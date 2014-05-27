@@ -1,0 +1,97 @@
+message S2c_worldboss_sign {            //世界boss图标
+    required int32 is_sign = 1;               //0是显示图标，1是取消图标
+    required int32 is_box_join = 2;           //0是需要显示出是否参赛
+}
+
+message C2s_worldboss_join_exit {
+    required int32 is_join = 1;               //0是参赛，1是退出
+}
+
+message C2s_worldboss_fight {
+    required int32 place_holder = 1;
+}
+
+message C2s_worldboss_accelerate {          //消除冷却时间
+    required int32 place_holder = 1;
+}
+
+message S2c_worldboss_exit {                //活动结束10秒后使用
+    required int32 place_holder = 1;
+}
+
+message Worldboss_one_user_info {       //一个玩家的挑战信息
+    required int32 rank = 1;            //排行
+    required string user_name = 2;      //玩家名字
+    required int32 hurt_hp = 3;         //现在伤害的血量
+}
+
+message S2c_worldboss_end_msg {             //结算的信息
+    required int32 my_rank = 1;
+    required int32 my_hurt_hp = 2;
+    required int32 max_hp = 3;
+    required string kill_name = 4;      //击杀boss人的名字
+    required int32 is_boss_die = 5;     //boss是否死了，0是，1不是
+    repeated Worldboss_one_user_info one_user = 6;
+}
+
+message S2c_worldboss_base_info {
+    required int32 my_rank = 1;         //玩家自己的排名        --101代表100之后
+    required int32 my_hurt_hp = 2;      //自己的伤害血量
+    required int32 max_hp = 3;          //boss的总血量
+    required int32 yuanbao = 4;         //玩家的元宝
+    required int32 cash = 5;            //当前玩家自己的库银
+    required int32 hurt_cash = 6;       //累计伤害的获得库银
+    required int32 cool_time = 7;       //挑战boss的冷却时间
+    required string boss_name = 8;        //世界boss的转生次数
+    required int32 boss_now_hp = 9;     //世界boss当前血量
+    required int32 act_rest_time = 10;  //活动剩余时间
+    repeated Worldboss_one_user_info one_user = 11;
+}
+
+message S2c_worldboss_hp_info{
+    required int32 boss_now_hp = 1;
+    required int32 boss_max_hp = 2;
+    required int32 boss_hurt_hp = 3;
+    required string user_name = 4;
+    optional int32 hurt_cash = 5;
+}
+
+message S2c_worldboss_talk{
+    required string msg = 1;
+}
+
+message S2c_worldboss_self_rank_info {       //用户自己的排行信息
+    required int32 rank = 1;                    //玩家自己的排名    --101代表100之后
+    required int32 hurt_hp = 2;                 //自己的伤害血量
+    required int32 max_hp = 3;                  //boss的总血量
+}
+
+message S2c_worldboss_rest_cooltime {       //玩家剩余冷却时间
+    required int32 yuanbao = 1;         //玩家的元宝
+    required int32 cash = 2;            //当前玩家自己的库银
+    required int32 cool_time = 4;       //挑战boss的冷却时间    
+}
+
+message S2c_worldboss_top_5_info {
+    repeated Worldboss_one_user_info one_user = 1;
+}
+
+message Worldboss_partner_info {
+	required string name = 1;		//侠客名称
+	required int32 icon = 2;		//侠客头像
+	required int32 step = 3;		//侠客品阶
+	required int32 grade=  4;		//当前等级
+	required int32 add_exp = 5;		//获得经验
+	optional int32 add_grade = 6;	//等级改变
+}
+
+message S2c_worldboss_end_fight_msg {
+    required int32 get_cash = 1;            //伤害奖励
+    optional int32 get_killcash = 2;        //击杀奖励
+    repeated Worldboss_partner_info partner_info = 7;	//侠客收益列表
+}
+
+message S2c_worldboss_hurt_msg{
+    required string user_name = 1;
+    required int32 hurt_hp = 2;
+}

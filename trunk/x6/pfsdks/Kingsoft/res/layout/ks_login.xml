@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+        <LinearLayout 
+            android:id="@+id/login_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/ks_bg_title"
+                android:padding="10dp"
+                android:orientation="horizontal" >
+                
+                <Button android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ks_btn_back"/>
+                
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/ks_login_title"
+                    android:textSize="18sp"
+                    android:textColor="#FFEDEFEF"
+                    />
+                
+                <Button android:id="@+id/close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:visibility="gone"
+                    android:background="@drawable/ks_btn_close_selector"
+                    />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ks_bg_up"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="15dp" >
+
+                <TextView
+                    android:id="@+id/err_info"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text=""
+                    android:textColor="#FFFF0000" />
+
+                <FrameLayout
+                    android:id="@+id/account_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:layout_below="@id/err_info"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/usr_account"
+                        android:layout_width="fill_parent"
+                        android:layout_height="55dp"
+                        android:background="#FFFFFF"
+                        android:drawableLeft="@drawable/ks_usr_selector"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/ks_usr_account"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textColor="#000000" />
+
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/usr_psw"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:layout_below="@id/account_layout"
+                    android:layout_marginTop="2dip"
+                    android:background="#FFFFFF"
+                    android:drawableLeft="@drawable/ks_psw_selector"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/ks_usr_psw"
+                    android:paddingLeft="10dip"
+                    android:password="true"
+                    android:singleLine="true"
+                    android:textColor="#000000" />
+
+           		<TextView
+           		    android:id="@+id/more_account"
+           		    android:layout_width="wrap_content"
+           		    android:layout_height="wrap_content"
+           		    android:layout_alignRight="@+id/usr_psw"
+           		    android:layout_below="@+id/usr_psw"
+           		    android:paddingBottom="12dp"
+           		    android:paddingTop="12dp"
+           		    android:singleLine="true"
+           		    android:text="@string/ks_switch_user"
+           		    android:textColor="#235A84"
+           		    android:textColorLink="#235A84"
+           		    android:textSize="16sp" />
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="15dp"
+                android:background="@drawable/ks_bg_down"
+                >
+                
+
+
+            </RelativeLayout>
+        
+        </LinearLayout>
+    </ScrollView>
+    
+    
+    <LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="42dip"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center"
+    >
+     <LinearLayout 
+     android:orientation="horizontal"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     
+     >
+ 
+     <Button
+      android:id="@+id/login"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="4dp"
+      android:background="@drawable/ks_btn_login_selector" />
+     
+     <Button 
+     android:layout_height="match_parent"
+     android:layout_width="wrap_content"
+     android:layout_margin="4dp"
+     android:id="@+id/quick_signin"
+     android:background="@drawable/ks_btn_register_selector"
+     />
+     </LinearLayout>
+     
+         <Button 
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:id="@+id/quick_login"
+	 android:layout_marginTop="6dp"    
+     android:background="@drawable/ks_generate_selector"
+     />
+
+    </LinearLayout>
+
+                	
+                	
+    
+    <include layout="@layout/ks_loading_layout"
+        android:visibility="gone"
+        android:id="@+id/loading"/>
+    
+</FrameLayout>

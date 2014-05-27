@@ -1,0 +1,265 @@
+#!/bin/sh
+
+#--------------------------------------------
+# 功能：编译xcode项目并打ipa包
+# 使用说明：
+#		编译project
+#			ipa-build <project directory> [-c <project configuration>] [-o <ipa output directory>] [-t <target name>] [-n]
+#		编译workspace
+#			ipa-build  <workspace directory> -w -s <schemeName> [-c <project configuration>] [-n]
+#
+# 参数说明：-c NAME				工程的configuration,默认为Release。
+#			-o PATH				生成的ipa文件输出的文件夹（必须为已存在的文件路径）默认为工程根路径下的”build/ipa-build“文件夹中
+#			-t NAME				需要编译的target的名称
+#			-w					编译workspace	
+#			-s NAME				对应workspace下需要编译的scheme
+#			-n					编译前是否先clean工程
+# 作者：ccf
+# E-mail:ccf.developer@gmail.com
+# 创建日期：2012/09/24
+#--------------------------------------------
+# 修改日期：2013/02/18
+# 修改人：ccf
+# 修改内容：打包方式改为使用xcrun命令，并修改第二个参数
+#--------------------------------------------
+# 修改日期：2013/04/25
+# 修改人：ccf
+# 修改内容：采用getopts来处理命令参数，并增加编译前清除选项
+#--------------------------------------------
+# 修改日期：2013/04/26
+# 修改人：ccf
+# 修改内容：增加编译workspace的功能
+#--------------------------------------------
+
+
+if [ $# -lt 1 ];then
+	echo "Error! Should enter the root directory of xcode project after the ipa-build command."
+	exit 2
+fi
+
+if [ ! -d $1 ];then
+	echo "Error! The first param must be a directory."
+	exit 2
+fi
+
+#工程绝对路径
+cd $1
+project_path=$(pwd)
+
+#编译的configuration，默认为Release
+build_config=Release
+
+param_pattern=":nc:o:t:ws:"
+OPTIND=2
+while getopts $param_pattern optname
+  do
+    case "$optname" in
+	  "n")        
+		should_clean=y		
+        ;;
+      "c")        
+		tmp_optind=$OPTIND
+		tmp_optname=$optname
+		tmp_optarg=$OPTARG
+		OPTIND=$OPTIND-1
+		if getopts $param_pattern optname ;then
+			echo  "Error argument value for option $tmp_optname"
+			exit 2
+		fi
+		OPTIND=$tmp_optind
+
+		build_config=$tmp_optarg
+		
+        ;;
+      "o")
+		tmp_optind=$OPTIND
+		tmp_optname=$optname
+		tmp_optarg=$OPTARG
+
+		OPTIND=$OPTIND-1
+		if getopts $param_pattern optname ;then
+			echo  "Error argument value for option $tmp_optname"
+			exit 2
+		fi
+		OPTIND=$tmp_optind
+
+		cd $tmp_optarg
+		output_path=$(pwd)
+		if [ ! -d $output_path ];then
+			echo "Error!The value of option o must be an exist directory."
+			exit 2
+		fi
+
+        ;;
+	  "w")
+		workspace_name='*.xcworkspace'
+		ls $project_path/$workspace_name &>/dev/null
+		rtnValue=$?
+		if [ $rtnValue = 0 ];then
+			build_workspace=$(echo $(basename $project_path/$workspace_name))
+		else
+			echo  "Error!Current path is not a xcode workspace.Please check, or do not use -w option."
+			exit 2
+		fi
+		
+        ;;
+	  "s")
+		tmp_optind=$OPTIND
+		tmp_optname=$optname
+		tmp_optarg=$OPTARG
+
+		OPTIND=$OPTIND-1
+		if getopts $param_pattern optname ;then
+			echo  "Error argument value for option $tmp_optname"
+			exit 2
+		fi
+		OPTIND=$tmp_optind
+
+		build_scheme=$tmp_optarg
+		
+        ;;
+	  "t")
+		tmp_optind=$OPTIND
+		tmp_optname=$optname
+		tmp_optarg=$OPTARG
+
+		OPTIND=$OPTIND-1
+		if getopts $param_pattern optname ;then
+			echo  "Error argument value for option $tmp_optname"
+			exit 2
+		fi
+		OPTIND=$tmp_optind
+
+		build_target=$tmp_optarg
+		
+        ;;
+
+
+      "?")
+        echo "Error! Unknown option $OPTARG"
+		exit 2
+        ;;
+      ":")
+        echo "Error! No argument value for option $OPTARG"
+		exit 2
+        ;;
+      *)
+      # Should not occur
+        echo "Error! Unknown error while processing options"
+		exit 2
+        ;;
+    esac
+  done
+
+
+#build文件夹路径
+build_path=${project_path}/build
+#生成的app文件目录
+appdirname=Release-iphoneos
+if [ $build_config = Debug ];then
+	appdirname=Debug-iphoneos
+fi
+#编译后文件路径(仅当编译workspace时才会用到)
+compiled_path=${build_path}/${appdirname}
+
+#版本号
+core_ver=$(grep -o "[0-9]\+" ${project_path}/../assets/versions.txt | head -n 1)
+
+short_core_ver=$(echo "scale=3;$core_ver/1000"|bc)
+#更新plist里的版本号
+/usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $core_ver" ${project_path}/x6/Resources/Info.plist
+#取build值
+/usr/libexec/PlistBuddy -c "Set CFBundleVersion $core_ver" ${project_path}/x6/Resources/Info.plist
+
+#是否clean
+if [ "$build_config" = "y" ];then
+	xcodebuild clean
+fi
+
+
+#组合编译命令
+build_cmd='xcodebuild'
+
+if [ "$build_workspace" != "" ];then
+	#编译workspace
+	if [ "$build_scheme" = "" ];then
+		echo "Error! Must provide a scheme by -s option together when using -w option to compile a workspace."
+		exit 2
+	fi
+	
+	build_cmd=${build_cmd}' -workspace '${build_workspace}' -scheme '${build_scheme}' -configuration '${build_config}' CONFIGURATION_BUILD_DIR='${compiled_path}' ONLY_ACTIVE_ARCH=NO'
+
+	else
+	#编译project
+	build_cmd=${build_cmd}' -configuration '${build_config}
+
+	if [ "$build_target" != "" ];then
+	build_cmd=${build_cmd}' -target '${build_target}
+	fi
+	
+fi
+
+# #复制dev版的config.txt
+# cp -f ${project_path}/config.txt ${project_path}/../assets/config.txt
+
+# #复制dev版的channel.txt
+# cp -f ${project_path}/channel.txt ${project_path}/../assets/channel.txt
+
+
+#编译工程
+cd $project_path
+$build_cmd || exit
+
+#进入build路径
+cd $build_path
+
+#创建ipa-build文件夹
+if [ -d ./ipa-build ];then
+	rm -rf ipa-build
+fi
+mkdir ipa-build
+
+
+#app文件名称
+appname=$(basename ./${appdirname}/*.app)
+#通过app文件名获得工程target名字
+target_name=$(echo $appname | awk -F. '{print $1}')
+#app文件中Info.plist文件路径
+app_infoplist_path=${build_path}/${appdirname}/${appname}/Info.plist
+
+#取版本号
+bundleShortVersion=$(/usr/libexec/PlistBuddy -c "print CFBundleShortVersionString" ${app_infoplist_path})
+#取build值
+bundleVersion=$(/usr/libexec/PlistBuddy -c "print CFBundleVersion" ${app_infoplist_path})
+
+#IPA名称
+#ipa_name="${target_name}_${bundleShortVersion}_${build_config}${bundleVersion}_$(date +"%Y%m%d")"
+ipa_name="wsdx_${core_ver}"
+echo $ipa_name
+
+#xcrun打包
+ipa_dir=${build_path}/ipa-build
+xcrun -sdk iphoneos PackageApplication -v ./${appdirname}/*.app -o ${ipa_dir}/${ipa_name}.ipa || exit
+
+if [ "$output_path" != "" ];then
+	cp ${build_path}/ipa-build/${ipa_name}.ipa $output_path/${ipa_name}.ipa
+	echo "Copy ipa file successfully to the path $output_path/${ipa_name}.ipa"
+fi
+
+# echo "create release ipa" 
+# #release版本打包
+# if [ -d ./Payload ];then
+# 	rm -rf Payload
+# fi
+
+# unzip -q ${ipa_dir}/${ipa_name}.ipa
+# rm -rf Payload/${zip}/_CodeSignature
+
+# #复制release版的config.txt
+# cp -f ${project_path}/config_release.txt Payload/${appname}/assets/config.txt
+
+# #复制release版的channel.txt
+# cp -f ${project_path}/channel_release.txt Payload/${appname}/assets/channel.txt
+
+# codesign -f -s "iPhone Developer" "Payload/${appname}"
+# zip -rqm ${ipa_dir}/wsdx_${core_ver}_release.ipa Payload

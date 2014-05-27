@@ -1,0 +1,88 @@
+message C2s_juxian_chouka {			//抽卡					
+	required int32 type = 1;		//1银两抽卡 11普通元宝抽卡 12高级元宝抽卡 
+	required int32 sectionno = 2;	//抽取篇章
+}
+
+message S2c_juxian_info {
+	required int32 noryuanbao = 1;			//普通消耗元宝
+	required int32 advyuanbao = 2;			//高级消耗元宝
+	required int32 cash = 3;				//消耗银两
+	required int32 isfirstyb = 4;			//是否元宝首刷 1是 0否
+	required int32 fav = 5;					//好感度
+	required int32 distimes = 6;			//元宝半价次数
+	required int32 sumdistimes = 7;			//元宝半价最大次数
+	required int32 cashtime = 8;			//银两抽卡时间cd
+	required int32 iscash = 9;				//是否能银两抽卡 0不能 1能
+	required int32 noryuanbaotime = 10;		//普通元宝免费cd时间
+	required int32 advyuanbaotime = 11;		//高级元宝免费cd时间
+	required int32 yltimes = 12;			//银两抽卡次数
+	required int32 max_yltimes = 13;		//最大银两抽卡次数
+	required int32 max_point = 14;			//最大集卡点数
+	required int32 point_yuanbao = 15;		//集卡点所需元宝
+}
+
+message C2s_juxian_info {
+	required int32 placeholder = 1;
+}
+
+message C2s_juxian_opensection {	//获取开启篇章，按id排序
+	required int32 placeholder = 1;
+}
+
+message Juxian_sectioninfo {
+	required int32 no = 1;			//开启篇章编号
+	required string name = 2;		//开启篇章名称
+}
+
+message S2c_juxian_opensection {
+	repeated Juxian_sectioninfo list_info = 1;
+}
+
+message S2c_juxian_add {
+	required int32 icon = 1;		//图片
+	required string name = 2;		//名称
+	required int32 step = 3;		//阶位
+	required int32 type = 4;		//1侠客 2道具
+	required int32 choutype = 5;	//1元宝 2银两
+	required int32 sectionno = 6;	//抽取篇章
+	required int32 num = 7;			//数量
+	required int32 star = 8;		//星级
+}
+
+message Juxian_yuanbao_partner {
+	required int32 ptype = 1;		//1侠客 2道具
+	required int32 icon = 2;		//图片
+	required string name = 3;		//名称
+	required int32 step = 4;		//阶位
+	required int32 star = 5;		//星级
+	required int32 type = 6;		//类型
+	required int32 num = 7;			//数量
+}
+
+message S2c_juxian_ybchoukainfo {
+	required int32 type = 1;		//11普通元宝抽卡 12高级元宝抽卡 
+	required int32 isdis = 2;		//是否半价
+	required int32 isfree = 3;		//是否免费
+	repeated Juxian_yuanbao_partner list_info = 4;
+}
+
+message C2s_juxian_ybchoukainfo {
+	required int32 type = 1;			//11普通元宝抽卡 12高级元宝抽卡 
+}
+
+message C2s_juxian_chooseka {
+	required int32 type = 1;		//11普通元宝抽卡 12高级元宝抽卡 
+	repeated int32 poslist = 2;		//所选卡
+}
+
+message S2c_juxian_chooseka {
+	required int32 placeholder = 1;	//成功选卡
+}
+
+message C2s_juxian_clearka {
+	required int32 type = 1;		//11普通元宝抽卡 12高级元宝抽卡 
+}
+
+message S2c_juxian_clearka {
+	required int32 type = 1;		//放弃卡成功
+}

@@ -1,0 +1,27 @@
+message C2s_shop_info{
+    required int32 place_holder = 1;
+}
+
+message Shop_limitbuy_item{
+    required int32 shop_tab_no = 1;
+    required int32 item_no = 2;
+    required int32 max_sell_count = 3;      //如果0表示已经买完了
+}
+
+message Shop_cannotbuy_item{
+    required int32 shop_tab_no = 1;
+    required int32 item_no = 2;
+}
+
+message S2c_shop_info{
+    repeated Shop_limitbuy_item limitbuy = 1;
+    repeated Shop_cannotbuy_item cannotbuy = 2;
+    required string fuben_sectionno = 3;        //1001;1002;1003
+}
+
+message C2s_shop_buy{
+    optional int32 shop_tab_no = 1;
+    optional int32 sort_no = 2;
+    required int32 item_no = 3;
+    required int32 buy_count = 4;
+}

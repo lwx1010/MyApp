@@ -1,0 +1,77 @@
+
+//武林榜挑战信息
+message C2s_wulin_info {
+	required int32 index = 1;//占位符
+}
+
+//构造某排名玩家数据
+message Wulin_list {
+	required string uid = 1;//玩家uid
+	required string name = 2;//玩家名称
+	required int32 photo = 3;//玩家侠客头像
+	required int32 grade = 4;//玩家等级
+	required int32 score = 5;//玩家战斗力
+	required int32 rank = 6;//玩家排名
+	required string bonus_type = 7;//奖励类型 Cash银两 YuanBao元宝 UserExp玩家经验 PartnerExp同伴经验
+	required int32 bonus_value = 8;//奖励数值
+	required int32 over_time = 9;//奖励冷却时间
+	required int32 can_pk = 10;	//能否挑战 1能 2不能 3自己 4自身排位提升
+	optional int32 step = 11;
+}
+
+//发送武林榜挑战信息
+message S2c_wulin_info {
+	repeated Wulin_list wulin_info = 1;
+	required int32 is_change = 2;           //战斗人物不同需要改变0，没有变，1改变
+}
+
+
+
+//请求玩家武林榜信息
+message C2s_wulin_user_info {
+	required int32 index = 1;
+}
+
+//发送玩家武林榜信息
+message S2c_wulin_user_info {
+	required int32 user_rank = 1;//排名 0为5000名以外,5000名以外的玩家没有奖励,所以协议里奖励的信息都会发0
+	required int32 user_yuanbao = 2;//元宝
+	required int32 pk_num = 3;//可挑战次数
+	required int32 can_reward = 4;//能否领取奖励 1能0不能
+	required int32 over_time = 5;//奖励冷却时间
+	required string bonus_type = 6;//奖励类型 Cash银两 YuanBao元宝 UserExp玩家经验 PartnerExp同伴经验 Null无
+	required int32 bonus_value = 7;//奖励数值
+	required int32 can_buy_pk = 8;//能否购买次数 1能 0不能
+	required int32 buy_pk_yb = 9;	//购买次数需要多少元宝
+}
+
+
+
+//领取奖励
+message C2s_wulin_bonus {
+	required int32 index = 1;//占位符
+}
+
+//购买次数
+message C2s_wulin_buy {
+	required int32 buy_num = 1;	//购买数量
+}
+
+//返回购买结果
+message S2c_wulin_buy_result {
+	required int32 pk_num = 1;//可挑战次数
+	required int32 can_buy_pk = 2;//能否购买次数 1能 0不能
+	required int32 buy_pk_yb = 3;	//购买次数需要多少元宝
+}
+
+//挑战
+message C2s_wulin_pk {
+	required string tar_uid = 1;//目标玩家uid
+    required int32 pos = 2;     //目标玩家排位
+}
+
+message S2c_wulin_pk_result {
+	required int32 user_win = 1;//1胜利 0失败
+	optional string bonus_type = 2;//奖励类型 Cash银两 YuanBao元宝 UserExp玩家经验 PartnerExp同伴经验
+	optional int32 bonus_value = 3;//奖励数值
+}

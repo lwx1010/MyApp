@@ -1,0 +1,32 @@
+message DailyTask_info {					//获取任务信息
+	required int32 taskid = 1;		//任务编号
+	required string name = 2;		//任务名称
+	required string des = 3;		//任务描述
+	required int32 star = 4;		//星级
+	required int32 num = 5;			//已进行次数
+	required int32 neednum = 6;		//所需次数
+	required int32 isfinish = 7;	//任务完成状态 0未完成 1已完成
+	required string reward = 8;		//任务奖励描述
+	required int32 type = 9;		//任务类型
+	repeated int32 finishcondition = 10;	//完成条件，目前只需注意类型为13的交付任务的完成条件，格式：个数,类型(11为侠客卡、其余填写道具的Kind字段),品阶
+}
+
+message S2c_dailytask_infolist {
+	repeated DailyTask_info list_info = 1;	//任务列表
+}
+
+message C2s_dailytask_infolist {
+	required int32 placeholder = 1;		//请求任务
+}
+
+message C2s_dailytask_getreward {
+	required int32 taskid = 1;			//领取任务奖励
+}
+
+message C2s_dailytask_giveitem {
+	repeated int32 itemlist = 1;		//道具运行id,数量
+}
+
+message C2s_dailytask_fresh {
+	required int32 placeholder = 1;		//刷新任务
+}

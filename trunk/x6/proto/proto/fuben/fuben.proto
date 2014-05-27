@@ -1,0 +1,124 @@
+message C2s_fuben_fight {	//副本战斗					
+	required int32 chapterno = 1;	//章节id
+	required int32 enemyno = 2;		//怪物id	
+}
+
+message C2s_fuben_fastfight {	//速战速决
+	required int32 chapterno = 1;	
+	required int32 enemyno = 2;
+}
+
+message Fuben_enemy_info {			
+	required int32 enemyno = 1;		//怪物编号
+	required int32 fighttimes = 5;	//今天挑战次数
+	required int32 maxtimes = 6;	//最大战斗次数
+	required int32 isfinish = 7;	//是否完成，判断章节是否完成依据
+	required int32 score = 8;		//得分
+	required int32 maxbuytimes = 9;	//最大购买次数
+	required int32 buytimes = 10;	//已购买次数
+}
+
+message S2c_fuben_info {						//副本页面信息
+	required int32 chapterno = 1;				//章节id
+	repeated Fuben_enemy_info list_info = 2; 	//怪物记录
+	required int32 isfinish = 3;				//章节是否完成 1完成 0未完成
+	required int32 isreward = 4;				//章节通关奖励 0不能领取 1能领取 2已领取
+}
+
+message Fuben_chapter_info {
+	required int32 chapterno = 1;		//章节编号
+	required string chaptername = 2; 	//章节名称
+	required int32 isfinish = 3; 		//是否完成
+	required int32 sectionno = 4;		//所属篇章编号	
+}
+
+message S2c_fuben_chapterlist {
+	repeated Fuben_chapter_info list_info = 1; //章节列表
+	required int32 chapterno = 2;		//玩家当前章节id
+	required int32 enemyno = 3;			//玩家当前关卡编号id
+	required int32 section = 4;			//篇章编号
+	required int32 isopen = 5;			//是否开启
+	required int32 score = 6;			//篇章总星星数
+	required int32 isfinish = 7;		//篇章是否完成
+}
+
+message C2s_fuben_chapterlist {			//客户端获取章节列表
+	required int32 section = 1;			//篇章编号
+}
+
+message C2s_fuben_info {			//获取章节信息
+	required int32 chapterno = 1;	//章节编号 填-1为取当前进行的章节
+}
+
+message C2s_fuben_buytime {			//购买次数
+	required int32 chapterno = 1;
+	required int32 enemyno = 2;
+}
+
+message Fuben_item_info {
+	required string name = 1;		//道具名称
+	required int32 icon = 2;		//道具图片
+	required int32 num = 3;			//道具数量
+	required int32 type = 4;		//道具类型 1道具 2侠客
+	required int32 rare = 5;		//稀有度
+	optional int32 kind = 6;		//道具类型
+}
+
+message Fuben_partner_info {
+	required string name = 1;		//侠客名称
+	required int32 icon = 2;		//侠客头像
+	required int32 step = 3;		//侠客品阶
+	required int32 grade=  4;		//当前等级
+	required int32 add_exp = 5;		//获得经验
+	optional int32 add_grade = 6;	//等级改变
+}
+
+message S2c_fuben_fightend {
+	required int32 iswin = 1;		//是否胜利 1胜利 0失败
+	optional int32 score = 2;		//得分
+	optional int32 exp = 3;			//经验
+	optional int32 exp_partner = 4;	//侠客经验
+	optional int32 cash = 5;		//银两
+	repeated Fuben_item_info list_info = 6;	//道具列表
+	repeated Fuben_partner_info partner_info = 7;	//侠客收益列表
+}
+
+message C2s_fuben_sectioninfo {
+	required int32 section = 1;
+}
+
+message S2c_fuben_sectioninfo {
+	required int32 section = 1;
+	required int32 score = 2;
+}
+
+message C2s_fuben_physicaltime {
+	required int32 placeholder = 1;
+}
+
+message S2c_fuben_physicaltime {	//体力回复倒计时
+	required int32 time = 1;
+}
+
+
+//扫荡副本
+message C2s_fuben_raids {
+	required int32 chapterno = 1;	//章节id
+	required int32 enemyno = 2;		//怪物id
+	required int32 times = 3;		//扫荡次数
+}
+
+message Fuben_item_list {
+	repeated Fuben_item_info list_info = 1;	//道具列表
+	optional int32 exp = 2;			//经验
+	optional int32 exp_partner = 3;	//侠客经验
+	optional int32 cash = 4;		//银两
+}
+
+message S2c_fuben_raids {
+	repeated Fuben_item_list list = 1;	//每次奖励
+}
+
+message C2s_fuben_chapterreward {
+	required int32 chapterno = 1;		//章节编号
+}

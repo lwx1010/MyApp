@@ -1,0 +1,14 @@
+
+
+class CCGlassEffect : public CCNode
+{
+	CCGlassEffect();
+	~CCGlassEffect();
+	static CCGlassEffect *create();
+	static CCGlassEffect *create(const std::string &fileName);
+	bool initWithTexture(const std::string &fileName);
+	void setCrashNum(const int num);
+	void startCrash();
+	CCPoint getRandomPos();
+};
+

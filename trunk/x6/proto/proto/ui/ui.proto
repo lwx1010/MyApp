@@ -1,0 +1,14 @@
+message Ui_id {
+	required string ui_id=1; 		//UI id
+	optional string ui_param = 2;   //参数 aa=bb&cc=dd
+}
+
+//服务器端主动请求提出对话框
+message S2c_open_ui {
+	repeated Ui_id ui_id_list=1; 		//UI ID list
+}
+
+//服务器端主动请求关闭对话框
+message S2c_close_ui {
+	repeated Ui_id ui_id_list=1; 		//UI ID list
+}

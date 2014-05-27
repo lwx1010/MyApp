@@ -1,0 +1,23 @@
+
+//获取基本信息
+message C2s_physicalbonus_info {
+	required int32 index = 1;//占位符
+}
+
+message Physicalbonus_info {
+	required int32 bonus_type = 1;		//活动类型 1为12点 2为18点
+	required int32 bonus_state = 2;		//活动状态 1未开启 2已开启 3已过期
+	required int32 bonus_give = 3;		//是否已领取 1可领取 2已领取 0不可领取
+	optional int32 bonus_num = 4;			//领取数值（针对可领取 和 已领取）
+}
+
+//发送基本信息
+message S2c_physicalbonus_info {
+	required int32 finish_num = 1;//完成副本次数
+	repeated Physicalbonus_info bonus_info = 2;
+}
+
+//领取奖励
+message C2s_physicalbonus_bonus {
+	required int32 index = 1;//占位符
+}

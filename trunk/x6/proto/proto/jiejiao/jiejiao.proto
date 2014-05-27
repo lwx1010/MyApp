@@ -1,0 +1,36 @@
+message C2s_jiejiao_info {          		
+	required int32 partnerno = 1;
+}
+
+message S2c_jiejiao_info {
+	required int32 partnerno = 1;
+	required int32 fav = 2;			//好感度
+	required int32 times = 3;		//当日赠送次数
+	required int32 maxtimes = 4;	//最大赠送次数
+}
+
+message C2s_jiejiao_senditem {		//赠送好感度物品
+	required int32 partnerno = 1;
+	required int32 itemno = 2;
+	required int32 num = 3;
+}
+
+message S2c_jiejiao_senditem {
+	required int32 isok = 1;
+}
+
+message C2s_jiejiao_recruit {
+	required int32 partnerno = 1;	//招募结交侠客
+}
+
+message S2c_jiejiao_recruit {
+	required int32 issucc = 1;		//是否成功 1成功 0不成功
+}
+
+message C2s_jiejiao_opensection {	//获取开启篇章，按id排序
+	required int32 placeholder = 1;
+}
+
+message S2c_jiejiao_opensection {
+	repeated int32 list_info = 1;
+}

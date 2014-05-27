@@ -1,0 +1,5 @@
+{
+"serverIp":"ts1.x6.millionhero.com",
+"serverPort":"31001",
+"updateWeb":"tc1.x6.millionhero.com"
+}

@@ -1,0 +1,14 @@
+message C2s_treasure_info{
+    required int32 place_holder = 1;
+}
+
+message S2c_treasure_info{
+    required int32 need_yuanbao = 1;    //消耗元宝
+    required int32 get_cash = 2;        //能获取的库银
+    required int32 rest_fcount = 3;     //免费剩余次数
+    required int32 rest_count = 4;      //剩余次数（不包含免费的）
+}
+
+message C2s_treasure_get_cash{
+    required int32 place_holder = 2;
+}

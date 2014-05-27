@@ -1,0 +1,35 @@
+message Sumloginbonus_reward_info {
+    required string name = 1;
+    required int32 count = 2;  
+    required int32 photo = 3;
+    required string type = 4;
+    required int32 step = 5;
+    required int32 item_kind = 6;
+}
+
+message S2c_sumloginbonus_info {
+    repeated int32 reward_days = 1;	//哪些天能领取奖励
+}
+
+message C2s_sumloginbonus_reward {
+	required int32 day = 1;	//领取哪一天奖励
+}
+
+message S2c_sumloginbonus_reward {
+	required int32 day = 1;		//领取哪一天奖励 不回协议服务端提示背包不足
+	repeated Sumloginbonus_reward_info r_infos = 2;//获得的奖励信息
+}
+
+message C2s_sumloginbonus_rewardlist {
+	repeated int32 reward_days = 1;	//客户端请求哪些天奖励显示
+}
+
+message Sumloginbonus_rewardlist_info {
+	required int32 day = 1;					//天数
+	required int32 isget = 2;				//是否领取 0能领取未领取 1已经领取 2不能领取
+	repeated Sumloginbonus_reward_info r_infos = 3;		//奖励信息
+}
+
+message S2c_sumloginbonus_rewardlist {
+	repeated Sumloginbonus_rewardlist_info list_info = 1;//获得的天数奖励信息
+}

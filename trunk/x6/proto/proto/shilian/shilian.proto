@@ -1,0 +1,70 @@
+message C2s_shilian_buy_cnt {
+    required int32 buy_cnt = 1;
+}
+message S2c_shilian_buy_cnt {
+    required int32 rest_fcnt = 1;           //剩余免费可以使用的次数    
+    required int32 rest_bcnt = 2;           //剩余购买可以使用的次数
+    required int32 rest_buy = 3;            //剩余购买次数
+}
+
+message C2s_shilian_base_info {             //获取界面基本信息
+    required int32 place_holder = 1;
+}
+
+message Shilian_one_guanqia {
+    required int32 shilian_no = 1;          //试炼编号
+    required int32 is_difffight = 2;        //困难是否挑战过，0否，1是
+    required int32 is_hellfight = 3;        //地狱是否挑战过，0否，1是
+    optional string simp_shousha = 4;       //普通首杀用户 
+    optional string diff_shousha = 5;       //困难首杀用户 
+    optional string hell_shousha = 6;       //地狱首杀用户 
+}
+
+message S2c_shilian_guanqia_info {
+    required int32 shilian_no = 1;          //试炼编号
+    required int32 is_difffight = 2;        //困难是否挑战过，0否，1是
+    required int32 is_hellfight = 3;        //地狱是否挑战过，0否，1是
+    optional string simp_shousha = 4;       //普通首杀用户 
+    optional string diff_shousha = 5;       //困难首杀用户 
+    optional string hell_shousha = 6;       //地狱首杀用户  
+}
+
+message S2c_shilian_base_info {
+    required int32 rest_fcnt = 1;               //剩余免费可以使用的次数    
+    required int32 rest_bcnt = 2;               //剩余购买可以使用的次数
+    required int32 rest_buy = 3;                //剩余购买次数
+    repeated Shilian_one_guanqia guanqia = 4;   //已经开启关卡信息
+}
+
+message C2s_shilian_fight {
+    required int32 shilian_no = 1;          //试炼编号
+    required int32 fight_type = 2;          //1普通，2困难，3地狱
+}
+
+message Shilian_item_info {
+	required string name = 1;		//道具名称
+	required int32 icon = 2;		//道具图片
+	required int32 num = 3;			//道具数量
+	required int32 type = 4;		//类型 1道具 2侠客 3真气
+	required int32 rare = 5;		//稀有度
+	optional int32 kind = 6;		//道具类型
+}
+
+message Shilian_partner_info {
+	required string name = 1;		//侠客名称
+	required int32 icon = 2;		//侠客头像
+	required int32 step = 3;		//侠客品阶
+	required int32 grade=  4;		//当前等级
+	required int32 add_exp = 5;		//获得经验
+	optional int32 add_grade = 6;	//等级改变
+}
+
+message S2c_shilian_fightend {
+	required int32 iswin = 1;		//是否胜利 1胜利 0失败
+	optional int32 exp = 2;			//经验
+	optional int32 exp_partner = 3;	//侠客经验
+	optional int32 cash = 4;		//银两
+	repeated Shilian_item_info list_info = 5;	//道具列表
+	repeated Shilian_partner_info partner_info = 6;	//侠客收益列表
+}
+

@@ -1,0 +1,76 @@
+message Randomev_info {
+	required string sid = 1;	//随机事件编号
+	required int32 type = 2;	//随机事件类型
+	required int32 id = 3;		//随机事件表格序号
+	required int32 time = 4;	//随机事件时间
+	optional string extdata = 5;//扩展信息a=xx&b=xx&k=xx的方式获取
+}
+
+message C2s_randomev_list {          		
+	required int32 place_holder = 1;
+}
+
+message S2c_randomev_list {
+	repeated Randomev_info list_info = 1;	//事件列表
+}
+
+message C2s_randomev_finish {
+	required string sid = 1;	//事件编号
+}
+
+message S2c_randomev_btn {
+	required int32 isshow = 1;	//1为显示 0不显示
+}
+
+message S2c_randomev_start {
+	required Randomev_info info = 1;	//触发协议
+}
+
+message C2s_randomev_info {
+	required string sid = 1;
+}
+
+message S2c_randomev_info {
+	required Randomev_info info = 1;	 //事件信息
+}
+
+
+//////////////////////////////瑶钱协议
+message S2c_yaoqian_play {
+	required int32 give_cash = 1;	//给予银两
+	required int32 play_num = 2;//当前进行了第几次瑶钱
+	required int32 max_num = 3;//最多可瑶钱几次
+}
+
+//////////////////////////////猜拳协议
+message S2c_caiquan_result {
+	required int32 caiquan_result = 1;	//猜拳结果 1胜0败2平手
+	optional int32 give_cash = 2;//获胜给予银两
+}
+
+
+//////////////////////////////百发协议
+message C2s_baifa_shoot {
+    required string sid = 1;	        //随机事件编号
+    required int32 power = 2;           //力度
+}
+
+message S2c_baifa_shoot {
+    required string sid = 1;	        //随机事件编号
+    required int32 is_shoot = 2;        //是否射击出去，-1：过期，0：重来，1：力度不够，2：射中，3：射爆
+    optional int32 is_get = 3;          //是否获得奖励，在能射击出去的情况下有效，0获得，1没有获得 
+}
+
+
+//////////////////////////////切磋协议
+message S2c_qiecuo_result {
+    required int32 win_lose = 1;        //1是胜利，2是战败
+    required int32 exp = 2;             //经验    
+    optional int32 chip_no = 3;         //碎片id
+}
+
+
+//////////////////////////////大侠协议
+message S2c_daxia_result {
+    required string msg = 1;
+}

@@ -1,0 +1,79 @@
+message C2s_migong_buy_cnt {
+    required int32 count = 1;
+}
+
+message C2s_migong_moveto {                //移动
+    required int32 moveto_no = 1;           //移动到那个格子
+}
+
+message C2s_migong_shaizi {                 //丢骰子
+    required int32 place_holder = 1;
+}
+
+message C2s_migong_start_act {              //开始迷宫
+    required int32 start_type = 1;          //开始类型，1：10000库银或者10元宝，2：20000，3：30000，4：50000
+}
+
+message C2s_migong_info {
+    required int32 place_holder = 1;
+}
+
+message Migong_grid_info {
+    required int32 photo = 1;
+    required int32 grid_no = 2;
+    required string tips = 3;
+}
+
+message S2c_migong_info {
+    required int32 use_cnt = 1;             //今天使用了的次数
+    required int32 buy_cnt = 2;             //今天购买次数
+    required int32 free_cnt = 3;            //免费次数(剩余次数=buy_cnt + free_cnt - use_cnt)
+    required int32 rest_move = 4;           //剩余丢骰子次数
+    required int32 step_no = 5;             //玩家当前所在格子
+    required int32 photo = 6;               
+    repeated Migong_grid_info g_infos = 7;  //需要显示的格子信息
+}
+
+message S2c_migong_shaizi_info {            //丢骰子后回的协议，或者进入界面的时候，上次丢了骰子后还没走
+    required int32 rest_move = 1;           //剩余丢骰子次数
+    required int32 shaizi_no = 2;           //丢出的骰子数
+    repeated int32 grid_no = 3;             //哪些格子可行
+}
+
+message Migong_reward_info {
+    required string name = 1;
+    required int32 count = 2;  
+    required int32 photo = 3;
+    required string type = 4;
+    required int32 step = 5;
+    required int32 item_kind = 6;
+}
+
+message S2c_migong_moveto {
+    required int32 rest_move = 1;           //剩余丢骰子次数        可能会增加次数了
+    repeated Migong_grid_info g_infos = 2;  //需要显示的格子信息
+    repeated int32 through_no = 3;          //经过的格子,如果从1格子到5格子,经过2则{[1]=1,[2]=2,[3]=5}
+    repeated Migong_reward_info r_infos = 4;//获得的奖励信息
+    required int32 type = 5;                //-2：战斗失败无法获得，-1：空格子无法获得，0：背包满了无法获得，1：获得奖励
+}
+
+message Migong_partner_info {
+	required string name = 1;		//侠客名称
+	required int32 icon = 2;		//侠客头像
+	required int32 step = 3;		//侠客品阶
+	required int32 grade=  4;		//当前等级
+	required int32 add_exp = 5;		//获得经验
+	optional int32 add_grade = 6;	//等级改变
+}
+
+message S2c_migong_fight_info {
+    required int32 iswin = 1;		//是否胜利 1胜利 0失败
+    required int32 shengwang = 2;
+    repeated Migong_partner_info partner_info = 3;
+}
+
+message S2c_migong_buy_cnt {
+    required int32 use_cnt = 1;             //今天使用了的次数
+    required int32 buy_cnt = 2;             //今天购买次数
+    required int32 free_cnt = 3;            //免费次数(剩余次数=buy_cnt + free_cnt - use_cnt)
+}

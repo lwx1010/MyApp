@@ -1,0 +1,21 @@
+message Signin_info {				
+	required int32 index = 1;			//序号
+	required string reward_des = 2;		//奖励信息
+	required int32 isdouble = 3;		//能否双倍领取 1能 0不能
+	optional string reward_value = 4;	//相对价值
+}
+
+message S2c_signin_info {
+	required int32 curindex = 1;		//当前领取的天数
+	required int32 canget = 2;			//能否领取奖励 0不能 1能
+	required int32 double_yuanbao = 3;	//双倍消耗元宝
+	repeated Signin_info list_info = 4;	//天数奖励列表
+}
+
+message C2s_signin_info {
+	required int32 placeholder = 1;
+}
+
+message C2s_signin_getreward {			//获取奖励
+	required int32 type = 1;			//1普通领取 2元宝领取
+}

@@ -1,0 +1,69 @@
+//-----------------------------------c2s-----------------------------------
+message C2s_login_player_add {			//新建角色
+	required string name = 1;			//角色名
+	optional int32 sex = 2;				//性别，可选备用
+	required int32 head_id = 3;			//头像编号
+	optional int32 partnerno = 4;		//选择侠客编号
+}
+
+message C2s_login_playername {
+	required string name = 1;
+}
+
+message S2c_login_playername {
+	required int32 exist = 1;			//1存在 2不存在
+}
+
+message C2s_login_player_enter {		//角色登录
+	required string id =1; 	  			//id：玩家选择的一个id登陆到游戏中
+}
+
+message C2s_login_del_player {			//删除角色
+	required string user_id = 1;			//角色ID
+}
+
+
+//联运平台账号登录
+message C2s_login_corp_account {				
+	required int32 corp_id =1; 	  	//联运商编号
+	required string acct = 2;  		//联运商玩家账号
+	required int32 adult =3;    	//账号防沉迷信息,0,1,2
+	required int32 login_time  = 4; 		//账号在平台的登录时间，登录时间超过10分钟，则票据过期
+	required string sign = 5; 		//验证票据信息,md5({corp_id}_{acct_id}_{login_time}_{平台密匙})
+	optional string extdata = 6 ; //扩展信息a=xx&b=xx&k=xx的方式获取，为了日后的其他登录信息获取
+}
+
+//-----------------------------------s2c-----------------------------------
+message S2c_login_error {				//返回登录错误信息
+	required int32 err_no =1; 	  		//错误编号
+	required string err_desc =2; 	  	//错误描述
+}
+
+message Login_list_info {				//登录角色信息
+	required string name = 1;			//角色名
+	required int32 head_id = 2;			//头像ID
+	required string id = 3;				//角色ID
+	required int32 grade =4;			//等级
+	required int32 family =5;			//门派ID
+	optional int32 sex = 6;				//性别
+}
+
+message S2c_login_player_list {			//发送角色列表
+	repeated Login_list_info list_info = 1;    //列表信息
+}
+
+message S2c_login_status {			//发送登录状态
+	required int32 status = 1;		//0.登录失败 1.登录成功,开始发送玩家数据 2. 初始化数据完毕
+}
+
+message S2c_login_tips {			//登录提示
+	required string msg = 1;		//
+}
+
+message C2s_login_jihuo {
+	required string jihuoma = 1;
+}
+
+message S2c_login_jihuo {
+	required int32 placeholder = 1;
+}

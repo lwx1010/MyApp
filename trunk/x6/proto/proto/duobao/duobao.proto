@@ -1,0 +1,104 @@
+message Duobao_one_martial {
+    required int32 martial_id = 1;
+    required int32 has_suipian = 2;
+    required int32 max_suipian = 3;
+}
+
+message S2c_duobao_base_info {          //显示所以已解锁的武学
+    repeated Duobao_one_martial one_martial = 1;
+}
+
+message S2c_duobao_other_info{
+    required int32 score = 1;           //玩家自身综合实力
+    required int32 now_vigor = 2;
+    required int32 max_vigor = 3;    
+}
+
+message Duobao_one_suipian {
+    required int32 item_no = 1;
+    required int32 has_num = 2;
+    required int32 max_num = 3;
+}
+
+message S2c_duobao_martial_info {       //显示某个已解锁的武学详细信息
+    required int32 martial_id = 1;
+    repeated Duobao_one_suipian one_suipian = 2;
+}
+
+message Duobao_one_partner{
+    required int32 photo = 1;
+    required string name = 2;
+    required int32 lv = 3;
+    required int32 step = 4;
+    required int32 star = 5;
+    required int32 partner_type = 6;    
+}
+
+message Duobao_one_user {
+    required string user_name = 1;
+    required string user_uid = 2;
+    required int32 partner_photo = 3;
+    required int32 step = 4;
+    required int32 lv = 5;
+    required int32 score = 6;           //战斗力
+    required int32 enemy_friend = 7;    //0什么都不是，1仇人，2好友
+    required int32 star = 8;
+    required int32 partner_type = 9;
+    repeated int32 suipians_no = 10;     //拥有的碎片ids
+    repeated Duobao_one_partner partners = 11;
+}
+
+message S2c_duobao_after_info{          //战斗结束后的信息
+    required string martial_name = 1;
+    required int32 martial_id = 2;
+    required int32 has_suipian = 3;
+    required int32 max_suipian = 4;
+    required int32 can_hecheng = 5;     //0是可以合成，1是不能合成
+    required int32 score = 6;           //玩家自身综合实力
+    required int32 now_vigor = 7;
+    required int32 max_vigor = 8;   
+}
+
+message S2c_duobao_user_info {          //夺标用户信息界面
+    required string martial_name = 1;
+    required int32 martial_id = 2;
+    required int32 has_suipian = 3;
+    required int32 max_suipian = 4;
+    required int32 can_hecheng = 5;     //0是可以合成，1是不能合成
+    repeated Duobao_one_user one_user = 6;
+}
+
+message C2s_duobao_base_info {          //显示所以已解锁的武学
+    required int32 place_holder = 1;
+}
+
+message C2s_duobao_martial_info {       //显示某个已解锁的武学详细信息
+    required int32 martial_id = 1;
+}
+
+message C2s_duobao_user_info {          //夺标用户信息界面
+    required int32 martial_id = 1;      
+}
+
+message C2s_duobao_change_user {        //获取另外一组人
+    required int32 martial_id = 1;      //武学书id
+    optional string user_uid1 = 2;
+    optional string user_uid2 = 3;
+    optional string user_uid3 = 4;
+    optional string user_uid4 = 5;
+}
+
+message C2s_duobao_fight {              //夺宝战斗
+    required string user_uid = 1;    
+    required int32 martial_id = 2;
+}
+
+message C2s_duobao_merge_martial {
+    required int32 martial_id = 1;
+}
+
+message S2c_duobao_fight_end_msg {
+    required int32 win_lose = 1;        //1是胜利，2是战败
+    required int32 exp = 2;             //经验
+    optional int32 chip_no = 3;         //碎片id
+}

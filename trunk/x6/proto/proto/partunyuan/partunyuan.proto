@@ -1,0 +1,28 @@
+message Partner_tunyuan_info {	//同伴列表信息
+	required int32 Id = 1;				//同伴Runtime Id
+	required int32 PartnerNo = 2;		//同伴编号
+	required int32 Photo = 3;			//同伴头像
+	required string Name = 4;			//同伴名称
+	required int32 Grade = 5;			//等级
+	required int32 Neili = 6;			//内力
+	required int32 Step = 7;			//阶级
+	required int32 Star = 8;			//多少颗星
+}
+
+message S2c_partner_tunyuan_list {				//发送同伴列表(不包含出战同伴)
+	repeated Partner_tunyuan_info partner_list = 1; //列表
+}
+
+message C2s_partner_tunyuan_list {				//请求全部列表
+	required int32 index = 1;	
+}
+
+message C2s_partner_tunyuan {	//吞元
+	required int32 partner_id = 1;	//吞元同伴运行id
+	repeated int32 source_list = 2;	//被吞元同伴运行id列表
+}
+
+message S2c_partner_tunyuan_result {	//吞元结果
+	required int32 tunyuan_ok = 1;	//1成功0失败
+	required int32 partner_id = 2;
+}

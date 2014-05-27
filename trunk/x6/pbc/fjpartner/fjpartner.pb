@@ -1,0 +1,3 @@
+
+
+fjpartner/fjpartner.proto

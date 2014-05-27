@@ -1,0 +1,20 @@
+message C2s_vip_next_info{
+    required int32 place_holder = 1;
+}
+
+message S2c_vip_next_info{
+    required int32 next_yuanbao = 1;        //如果vip顶级了就发0
+}
+
+message C2s_vip_get_gift{
+    required int32 vip_lv_gift = 1;         //发送S2c_vip_gift_info里的字段
+}
+
+message C2s_vip_next_giftlv{
+    required int32 place_holder = 1;
+}
+
+message S2c_vip_gift_info{
+    required int32 vip_lv_gift = 1;         //没有则为-1
+    required string msg = 2;            //奖励信息
+}

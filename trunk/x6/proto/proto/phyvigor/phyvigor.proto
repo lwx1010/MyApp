@@ -1,0 +1,13 @@
+message C2s_phyvigor_rest_info{
+    required int32 type = 1;        //获取信息类型，1：体力，2：精力
+}
+
+message S2c_phyvigor_rest_info{
+    required int32 type = 1;        //获取信息类型，1：体力，2：精力
+    required int32 hasbuy_c = 2;    //已经购买次数
+    required int32 maxbuy_c = 3;    //最大购买次数        
+}
+
+message C2s_phyvigor_buy{
+    required int32 type = 1;        //购买类型，1：体力，2：精力
+}

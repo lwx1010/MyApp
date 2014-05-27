@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+        
+    <LinearLayout 
+        android:id="@+id/login_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ks_bg_title"
+            android:padding="10dp"
+            android:orientation="horizontal" >
+            
+            <Button android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ks_btn_back"/>
+            
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/ks_login_title"
+                android:textSize="20sp"
+                android:textColor="#FFEDEFEF"
+                />
+            
+            <Button android:id="@+id/close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:visibility="gone"
+                android:background="@drawable/ks_btn_close_selector"
+                />
+        </RelativeLayout>
+        
+        <WebView android:id="@+id/clause_webview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            />
+        
+    </LinearLayout>
+    
+</FrameLayout>

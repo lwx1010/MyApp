@@ -1,0 +1,114 @@
+
+///////////////////////////////////////////邮件基本信息
+
+//初始化邮件界面
+message C2s_init_mail { 
+	required int32 index = 1;
+}
+
+//邮件基本信息
+message Mail_head_info {
+	required string mail_id = 1; 				//邮件标识
+	required int32 mail_type = 2; 			//邮件类别 1=系统 2=留意 3=战报
+	required int32 mail_sub_type = 3;		//邮件子类型
+	required int32 rev_time = 4; 				//接收时间
+	required int32 readed = 5; 					//已读标记
+	required string uid = 6; 						//发送者的uid
+	required string from = 7; 					//发送者姓名
+	required string title = 8; 					//邮件主题
+	required string content = 9; 				//邮件正文
+	required int32 has_attachment = 10;	//是否有附件 0=没有 1=有 2=已领取
+	optional string attachment_msg = 11;//附件描述
+}
+
+//发送邮件基本信息
+message S2c_mail_list {
+	repeated Mail_head_info mail_head_list = 1;
+}
+
+//发送新邮件基本信息
+message S2c_mail_new {
+	required Mail_head_info new_mail = 1;
+}
+
+//删除邮件
+message C2s_mail_del { 
+	required string mail_id = 1; //要删除的邮件id
+}
+
+//删除邮件成功
+message S2c_mail_del_result{
+	required string mail_id = 1;//删除的邮件id
+	required int32 mail_type = 2;//邮件类别 1=系统 2=留意 3=战报
+}
+
+//查看邮件,用于处理已读标识
+message C2s_mail_look {
+	required int32 mail_id = 1;//邮件id
+}
+
+
+///////////////////////////////////////////邮件附件领取
+
+//获取邮件附件
+message C2s_get_mail_attachment {
+	required string mail_id = 1; //邮件id
+}
+
+//领取邮件附件回应
+message S2c_get_mail_attachment {
+	required string mail_id = 1; //邮件id
+	required int32 success = 2; //领取是否成功 0=失败 1=成功
+}
+
+
+///////////////////////////////////////////新信件标识处理
+
+//发送新信件标识
+message S2c_mail_new_mail {
+	required int32 mail_type = 1; //邮件类别 1=系统 2=留意 3=战报 4=好友请求
+}
+
+//通知服务端此类型信件已读
+message C2s_mail_new_look {
+	required int32 mail_type = 1; //邮件类别 1=系统 2=留意 3=战报 4=好友请求
+}
+
+
+///////////////////////////////////////////邮件详细信息,以下协议暂时没有使用
+
+//获取邮件奖励内容
+message C2s_get_mail_reward { 
+	required string mail_id = 1; //邮件id
+}
+
+//附件物品内容
+message Attachment_item_info {
+	required int32 item_id = 1; 	//附件id
+	required int32 item_no = 2; 	//物品编号
+	required int32 icon_no = 3; 	//物品图标
+	required int32 amount = 4; 		//物品数量
+}
+
+//发送邮件奖励内容
+message S2c_mail_reward {
+	required string mail_id = 1; 			//邮件id
+	required int32 yuanbao = 2; 			//附件充值元宝数量
+	required int32 cash = 3; 					//附件现银数量
+	required int32 physical = 4;			//体力
+	required int32 vigor = 5;					//精力
+	repeated Attachment_item_info attachment_items = 6; //附件物品信息
+}
+
+//获取邮件附件某物品描述信息
+message C2s_get_attachment_desc {
+	required string mail_id = 1; 		//邮件id
+	required int32 item_id = 2; 		//物品id
+}
+
+//发送邮件附件某物品描述信息
+message S2c_attachment_item_string {
+	required string mail_id = 1;				//邮件id
+	required int32 item_id = 2;					//物品ID
+	required string item_desc = 3;  		//描述字窜
+}

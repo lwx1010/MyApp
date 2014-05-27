@@ -1,0 +1,38 @@
+
+//----------------91对接----------------
+//uin对应account_id, sessionid写到extdata:sessionid=xxx
+
+//对接登录接口
+message C2s_ptduijie_login {          		
+	required string token = 1;		//口令
+	optional string account = 2;	//账号
+	optional string account_id = 3;	//账号编号
+	required int32 corpid = 4;		//平台编号
+	required int32 serverid = 5;	//服务器编号
+	optional string extdata = 6;	//扩展信息a=xx&b=xx&k=xx的方式获取，为了日后的其他登录信息获取
+}
+
+//金山登录
+message C2s_kingsoft_login {          		
+	required string token = 1;		//口令
+	required string account = 2;	//账号
+	required int32 serverid = 3;	//服务器编号
+}
+
+//pp助手登录
+message C2s_pp_login {
+	required string token = 1;		//口令
+	required int32 serverid = 2;	//服务器编号
+}
+
+//91登录
+message C2s_91_login {
+	required string uin = 1;		//用户的91Uin
+	required int32 sessionid = 2;	//用户登录SessionId
+	required int32 serverid = 3;	//服务器编号
+}
+
+message S2c_ptduijie_mmguid {
+    required string guid = 1;
+    required string acct = 2;
+}

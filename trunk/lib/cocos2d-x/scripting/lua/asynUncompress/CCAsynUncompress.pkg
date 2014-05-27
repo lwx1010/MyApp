@@ -1,0 +1,7 @@
+
+class CCAsynUncompress : public CCObject
+{
+public:
+	/** @brief Ω‚—π */
+	static void uncompress(LUA_FUNCTION listener, const char* zipFile, const char* dstPath, const char* filter=NULL);
+};

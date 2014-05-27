@@ -1,0 +1,172 @@
+message Zhenqi_list_info {				//真气列表信息
+	required int32 Id = 1;				//真气Runtime Id
+	required string Name = 2;			//名称
+	required int32 Icon = 3;			//图标
+	required int32 Grade = 4;			//等级
+	required int32 Quality = 5;			//品质
+	required int32 EquipPartnerId = 6;	//装备同伴运行Id(0表示未装备)
+	optional int32 EquipPos = 7;		//装配位置
+	required string AttrType = 8;	//加成类型 Ap攻击 Dp防御 Hp生命 Speed速度 相关类型参看var_name.lua
+	required int32 AttrAddValue = 9;	//加成数值
+	required int32 ShowExp = 10;		//显示经验
+	required int32 MaxExp = 11;			//显示最大经验
+	required int32 Exp = 12;	//含有多少经验
+	required int32 RealMaxExp = 13;//真实最大经验值
+	required int32 Effect_H = 14;	//色相
+	required int32 Effect_S = 15;	//饱和
+	required int32 Effect_B = 16;	//明亮
+	required string Des = 17;		//真气描述
+}
+
+message S2c_zhenqi_list {				//发送真气列表
+	repeated Zhenqi_list_info zhenqi_list = 1; //列表
+}
+
+message C2s_zhenqi_list {				//请求全部列表
+	required int32 place_holder = 1;
+}
+
+message S2c_zhenqi_del {
+	required int32 id = 1;				//删除真气
+}
+
+message S2c_zhenqi_add {				//添加真气
+	required Zhenqi_list_info info = 1; 
+}	
+
+message Zhenqi_base_info {				//发送真气基础属性
+	required string key = 1;			//key
+	required string type = 2;			//类型 string number table
+	optional int32 value_int  = 3;		//整型值
+	optional string value_str = 4;		//字符串值
+	repeated int32 value_array = 5;		//数组
+}
+
+message C2s_zhenqi_baseinfo {
+	required int32 id = 1;				//获取真气属性列表
+	repeated string key = 2;			//key值列表
+	required string ui_id = 3;		//界面id
+}
+
+message S2c_zhenqi_baseinfo {
+	required int32 id = 1;				//真气ID
+	repeated Zhenqi_base_info list_info = 2;
+	optional string ui_id = 3;
+}
+
+message C2s_zhenqi_jiuzhuan {
+	required int32 place_holder = 1;	//1修炼 2九转
+}
+
+message C2s_zhenqi_tongxuan {
+	required int32 place_holder = 1;	//通玄
+}
+
+message S2c_zhenqi_jztx {
+	required int32 jztx_type = 1;//1为九转 2为通玄
+	required int32 jztx_result = 2;		//结果，1成功 0失败
+	optional string zhenqi_name = 3;//获得真气名称
+	optional int32 zhenqi_icon = 4;//获得真气图标
+	optional int32 Quality = 5;		//品质
+	optional int32 Effect_H = 6;	//色相
+	optional int32 Effect_S = 7;	//饱和
+	optional int32 Effect_B = 8;	//明亮
+}
+
+message C2s_zhenqi_upgrade {
+	required int32 targetid = 1;		//升级真气运行Id
+	repeated int32 sourceid_list = 2;		//被吞吃真气运行Id列表
+}
+
+message S2c_zhenqi_upgrade {
+	required int32 upgrade_result = 1;	//1升级成功 0失败
+	required int32 targetid = 2;		//真气运行Id
+	required int32 show_exp = 3;		//显示经验
+	required int32 max_exp = 4;			//显示最大经验
+	required int32 grade = 5;		//真气等级
+	required string attr_type = 6;	//加成类型 Ap攻击 Dp防御 Hp生命 Speed速度 相关类型参看var_name.lua
+	required int32 attr_add_value = 7;	//加成数值
+	required int32 exp = 8;//经验值
+}
+
+message C2s_zhenqi_equip_partner {	//穿戴装备
+	required int32 id = 1;			//真气Id
+	required int32 target_id = 2;
+	required int32 pos = 3;			//装备位
+}
+
+message C2s_zhenqi_unequip_partner {	//卸下装备
+	required int32 id = 1;
+	required int32 target_id = 2;
+}
+
+
+//点击同伴查看易筋信息
+message C2s_zhenqi_partner_info {
+	required int32 partner_id = 1;	//同伴运行id
+}
+
+//真气数据
+message Zhenqi_partner_list {
+	required int32 Id = 1;				//真气Runtime Id
+	required string Name = 2;			//名称
+	required int32 Icon = 3;			//图标
+	required int32 Grade = 4;			//等级
+	required int32 Quality = 5;			//品质
+	required int32 EquipPos = 6;		//装配位置
+	required string AttrType = 7;	//加成类型 Ap攻击 Dp防御 Hp生命 Speed速度 相关类型参看var_name.lua
+	required int32 AttrAddValue = 8;//加成数值
+	required int32 Effect_H = 9;	//色相
+	required int32 Effect_S = 10;	//饱和
+	required int32 Effect_B = 11;	//明亮
+	required string Des = 12;		//真气描述
+}
+
+//同伴易筋信息
+message S2c_zhenqi_partner_info {
+	required int32 partner_id = 1;		//同伴运行id
+	required string partner_name = 2;	//同伴名称
+	required int32 partner_photo = 3;	//同伴头像
+	required int32 partner_grade = 4;	//同伴等级
+	required int32 partner_star = 5;	//同伴星级
+	required int32 open_zhenqi = 6;//1开启第一层，2开启第一二层，3开启第一二三层
+	repeated Zhenqi_partner_list zhenqi_info = 7;
+}
+
+//请求可装备真气信息
+message C2s_zhenqi_partner_equip {
+	required int32 partner_id = 1;//同伴运行id
+	required int32 equip_type = 2;// 1为装备 2为替换
+	optional int32 zhenqi_id = 3;//待替换真气id
+}
+
+//发送可装备真气信息
+message S2c_zhenqi_partner_equip {
+	repeated Zhenqi_list_info zhenqi_list = 1; //列表
+}
+
+//替换真气
+message C2s_zhenqi_equip_partner_change {
+	required int32 old_zhenqi_id = 1;		//旧真气
+	required int32 new_zhenqi_id = 2;		//替换真气
+	required int32 partner_id = 3;			//同伴运行id
+	required int32 pos = 4;	//装备位置
+}
+
+message C2s_zhenqi_jztime {					//获取九转冷却时间
+	required int32 place_holder = 1;
+}
+
+message S2c_zhenqi_jztime {
+	required int32 time = 1;				//九转倒计时时间
+	required int32 isok = 2;				//是否能九转
+}
+
+message C2s_zhenqi_need {
+	required int32 place_holder = 1;		//获取消耗
+}
+
+message S2c_zhenqi_need {
+	required int32 jz_cash = 1;				//九转所需银两
+	required int32 tx_yuanbao = 2;			//通玄所需元宝 
+}

@@ -1,0 +1,247 @@
+message Item_xl_prop {
+	required string key = 1;
+	required int32 value = 2;
+	required int32 maxvalue = 3;
+}
+
+message Item_list_info {
+	required int32 IconNo = 1;			//道具图标
+	required int32 Id  = 2;				//道具ID
+	required int32 FrameNo = 3;			//所在页
+	required int32 Grid = 4;			//所在格
+	required int32 Amount = 5;			//叠加数
+	required int32 OverLap = 6;			//最大叠加数
+	required int32 Kind = 7;			//道具类型
+	required int32 SubKind = 8;			//道具子类型
+	required int32 IsShenBing = 9;		//是否神兵 0否 1是
+	required string Name = 10;			//道具名
+	required int32 Rare = 11;			//物品品阶，即稀有度
+	required int32 ShowPrice = 12;		//物品单价，即回购价格
+	required int32 NeedGrade = 13;		//物品使用等级
+	required int32 ItemNo = 14;			//物品ID
+	required int32 IsBind = 15;			//绑定状态
+	required int32 Birthday = 16;		//生成时间
+	required int32 EquipPartnerId = 17;	//装备同伴运行Id(0表示未装备)
+	optional int32 EquipPos = 18;		//装备栏位 1武器 2衣服 3饰品 100武功栏位1 101武功栏位2 102武功栏位3
+	
+	optional int32 SumAp= 19;				//攻
+	optional int32 SumDp = 20;				//防
+	optional int32 SumHp = 21;				//血
+	optional int32 SumApRate = 22;			//攻几率
+	optional int32 SumDpRate = 23;			//防几率
+	optional int32 SumHpRate = 24;			//血几率
+	optional int32 StrengGrade = 25;		//强化等级
+	optional int32 Step = 26;				//神兵阶位
+	required int32 CanXl = 27;			//能否洗练 1能 0不能
+	
+	optional int32 IsTalent = 28;		//是否天赋武学 1是或者不发
+	optional int32 MartialLevel = 29;	//武学等级
+	optional int32 MartialRealm = 30;	//武学境界
+	optional int32 MartialSkillAp = 31;	//威力
+	optional int32 MartialSkillApTargetType = 32;//攻击类型
+	
+	//碎片
+	optional int32 FormulaNo = 33;		//关联配方编号
+	optional int32 NeedNum = 34;		//所需合成道具数量(装备、侠客)
+	
+	//宝物描述
+	optional string Info1 = 35;
+	optional string Info2 = 36;			//道具作用
+	optional string Info3 = 37;			//道具使用方法
+	optional int32 CanUse = 38;			//能否使用
+	
+	repeated Item_xl_prop XlProp = 39;	//洗练属性
+}
+
+message S2c_item_list {				//发送道具列表(包含已装备道具)
+	required int32 frame = 1;
+	repeated Item_list_info item_list = 2; //列表
+}
+
+message C2s_item_list {				//请求全部列表
+	required int32 frame = 1;		//页序号
+}
+
+message Item_base_info {				//发送道具基础属性
+	required string key = 1;			//key
+	required string type = 2;			//类型 string number table
+	optional int32 value_int  = 3;		//整型值
+	optional string value_str = 4;		//字符串值
+	repeated int32 value_array = 5;		//数组
+}
+
+message C2s_item_baseinfo {
+	required int32 id = 1;				//获取道具属性列表
+	repeated string key = 2;			//key值列表
+	required string ui_id = 3;			//界面id
+}
+
+message S2c_item_baseinfo {
+	required int32 id = 1;				//道具ID
+	repeated Item_base_info list_info = 2;
+	optional string ui_id = 3;			//界面id
+}
+
+message C2s_item_xlprop {
+	required int32 id = 1;				//道具编号
+	required int32 type = 2;			//1未保留属性 2保留属性			
+}
+
+message S2c_item_xlprop {
+	required int32 id = 1;
+	repeated Item_xl_prop info = 2;		//洗练属性
+	required int32 type = 3;			//1未保留属性 2保留属性
+}
+
+message Item_step_prop {
+	required string key = 1;
+	required int32 value = 2;
+}
+
+message C2s_item_stepprop {
+	required int32 id = 1;				//道具编号
+	required int32 step = 2;			//阶位
+}
+
+message S2c_item_stepprop {
+	required int32 id = 1;
+	repeated Item_step_prop info = 2;	//阶位属性
+	required int32 step = 3;			//阶位
+	required int32 needcash = 4;		//升阶所需银两
+}
+
+message C2s_item_use {				//使用道具
+	required int32 char_id = 1;		//物品使用者ID
+	required int32 item_id = 2;		//物品ID
+	optional string exvals = 3;		//额外参数，格式k1=v1|k2=v2|k3=v3
+}
+
+message C2s_item_del {				//客户端请求删除物品
+	required int32 item_id = 1;		//物品ID
+}
+
+message C2c_item_delitemno {		//按道具编号丢弃
+	required int32 itemno = 1;
+}
+
+message C2s_item_sell {				//客户端请求出售物品
+	required int32 item_id = 1;		//物品ID
+}
+
+message S2c_item_del {				//服务端删除物品通知客户端
+	required int32 item_id = 1;		//物品ID
+}
+
+message S2c_item_sell {
+	required int32 item_id = 1;		//出售成功
+}
+
+message S2c_item_drop {
+	required int32 item_id = 1;		//丢弃成功
+}
+
+message S2c_item_add {				//添加道具
+	required Item_list_info info = 1;
+}	
+
+message S2c_item_frame_info {		//发送物品栏信息
+	required int32 frame = 1;		//物品栏编号
+	required int32 valid_grid = 2;	//物品栏可用格子数
+}
+
+message C2s_item_frame_info {		//发送物品栏信息
+	required int32 frame = 1;		//物品栏编号,0表示请求所有物品栏信息
+}
+
+message C2s_item_frame_extend{			//背包栏扩展
+	required int32 frame_no = 1;		//要扩展的栏编号，默认为mNORMAL_FRAME 为1
+	required int32 extend_to_gidx = 2;	//扩展到第几个格子编号,前面36个是不需要扩展的，最大可扩展到216个
+}
+
+message C2s_item_arrange{			//背包栏整理
+	required int32 frame_no = 1;	//要整理的物品栏编号，默认为mNORMAL_FRAME 为1
+}
+
+message C2s_item_split {			//拆分物品
+	required int32 item_id = 1;		//道具id
+	required int32 num = 2;			//拆分出来的数量
+}
+
+message C2s_item_equip_partner {	//穿戴装备
+	required int32 item_id = 1;
+	required int32 target_id = 2;
+	required int32 pos = 3;			//装备位
+}
+
+message C2s_item_autoequip_partner {
+	required int32 target_id = 1;	//同伴运行id
+}
+
+message S2c_item_equip_partner_retult {		//穿戴装备结果
+	required int32 is_ok = 1;//1成功 0失败
+	required int32 item_type = 2;//1装备 2武学
+}
+
+message C2s_item_unequip_partner {	//卸下装备
+	required int32 item_id = 1;
+	required int32 target_id = 2;
+}
+
+message S2c_item_unequip_partner_retult {		//卸下装备结果
+	required int32 is_ok = 1;//1成功 0失败
+	required int32 item_type = 2;//1装备 2武学
+}
+
+message Item_skill_info {
+	required int32 skill_id = 1;	//招式编号
+	required int32 type = 2;		//0是普通攻击 1是武学攻招 2是武学杀招 3是武学守招 4是武学奇招
+	required string des = 3;			//描述
+}
+
+message C2s_item_martial_skill {
+	required int32 id = 1;			//武学编号
+}
+
+message S2c_item_martial_skill {
+	required int32 id = 1;
+	repeated Item_skill_info list_info = 2;
+}
+
+//武学强化界面信息
+message C2s_item_martial_upgradeinfo {
+	required int32 id = 1;				//武学信息
+}
+
+message S2c_item_martial_upgradeinfo {
+	required int32 id = 1;						//武学id
+	repeated Item_skill_info list_info = 2;		//招式信息
+	required int32 neili = 3;					//所需内力
+	required int32 sumneili = 4;				//总内力
+	required int32 needrm = 5;					//所需境界
+	required int32 needlv = 6;					//所需人物等级
+}
+
+message C2s_item_martial_realminfo {
+	required int32 id = 1;				//武学信息
+}
+
+message S2c_item_martial_realminfo {
+	required int32 id = 1;						//武学id
+	repeated Item_skill_info list_info = 2;		//招式信息
+	required int32 maxlevel = 3;				//武学最大等级
+	required int32 rate = 4;					//基础成功率，秘籍附加成功率从，客户端计算阶位(100,200,300,500,600)
+	required int32 needlv = 5;					//所需武学等级
+	required int32 neili = 6;					//所需内力
+	required int32 sumneili = 7;				//总内力
+}
+
+message Item_tangyuan_attr {
+    required string attr_name = 1;
+    required int32 attr_add = 2;
+}
+
+message S2c_item_tangyuan_attr {
+    required string p_name = 1;
+    required int32 p_photo = 2;
+    repeated Item_tangyuan_attr tangyuan_attr = 3;
+}

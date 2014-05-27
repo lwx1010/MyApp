@@ -1,0 +1,81 @@
+message C2s_biwu_info {			//获得比武界面信息/换一组
+	required int32 open_type = 1; //1为打开界面 2为换一组
+}
+
+message Biwu_user {
+	required string uid = 1;		//玩家uid
+	required string name = 2;		//玩家名称
+	required int32 grade = 3;		//玩家等级
+	required int32 score = 4;		//玩家战斗力
+	required int32 photo = 5;		//玩家头像
+	required int32 step = 6;        //玩家出战同伴的品级
+	required int32 cash = 7;        //钱
+	required int32 star = 8;        //星级
+    required int32 partner_type = 9;//类型
+	required int32 is_friend = 10;	//是否为主角的好友：1好友 2仇人 3什么都不是
+}
+
+message S2c_biwu_info {		//发送比武界面信息
+	repeated Biwu_user biwu_info = 1;
+	required int32 user_jifen = 2;		//积分
+	required int32 user_score = 3;		//自身战斗力
+}
+
+
+message C2s_biwu_begin {		//选择对手进行比武
+	required string uid = 1;	//对手的uid
+}
+
+message S2c_biwu_result {	//发送战斗结果
+	required int32 is_win = 1;	//0为战败,1为全胜,2为险胜
+	required int32 give_jifen = 2;	//获得积分
+	optional int32 give_exp = 3;		//获得经验
+	optional int32 give_cash = 4;		//获得银两
+	optional int32 item_type = 5;		//物品类型1同伴2同伴碎片3装备4装备碎片5武学碎片
+	optional int32 item_icon = 7;		//物品图标
+	optional string item_name = 8;	//物品名称
+	optional int32 item_step = 9;		//物品品阶1-5
+}
+
+message C2s_biwu_shop_info {	//比武商场信息
+	required int32 index = 1;
+}
+
+message Biwu_shop {
+	required int32 shop_no = 1;			//售卖编号
+	required string shop_type = 2;	//物品类型 item:物品,vigor:体力,cash:银两
+	required int32 shop_kind = 3;		//售卖子类型
+	required string shop_name = 4;	//物品名称
+	required int32 shop_icon = 5;		//物品图标
+	required int32 shop_jifen = 6;	//所需积分
+	optional int32 shop_value = 7;	//给予数值
+	optional int32 shop_item_no = 8;//物品编号
+}
+
+message S2c_biwu_shop_info {	//发送比武商场信息
+	repeated Biwu_shop shop_info = 1;
+	required int32 user_jifen = 2;		//玩家当前积分
+}
+
+message C2s_biwu_shop_buy {		//购买
+	required int32 shop_no = 1;			//售卖编号
+	required int32 shop_kind = 2;		//售卖子类型
+	required int32 buy_num = 3;		//购买数量
+}
+
+message C2s_biwu_fight_info {		//查看玩家战斗信息
+	required string uid = 1;//目标玩家uid
+}
+
+message Biwu_fight_info {
+	required string name = 1;		//名称
+	required int32 grade = 2;		//等级
+	required int32 star = 3;		//星级
+	required int32 photo = 4;		//头像
+	required int32 step = 5;		//品阶
+	required int32 partner_type = 6;//类型
+}
+
+message S2c_biwu_fight_info {	//发送玩家战斗信息
+	repeated Biwu_fight_info fight_info = 1;
+}

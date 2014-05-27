@@ -1,0 +1,47 @@
+message C2s_guide_info {          		
+	required int32 guide_no = 1;	//引导编号
+}
+
+message S2c_guide_info {
+	required int32 guide_no = 1;	//下一步引导编号 0为没有下一步
+}
+
+message C2s_guide_anim {          		
+	required int32 place_holder = 1;
+}
+
+message C2s_guide_accept {
+	required int32 place_holder = 1;
+}
+
+message S2c_guide_start {
+	required int32 guide_no = 1;		//开始引导编号
+	repeated int32 finish_guide = 2;	//已完成编号
+	optional string extdata = 3; 		//扩展信息a=xx&b=xx&k=xx的方式获取
+}
+
+message S2c_guide_upgrade {                 //侠客
+    required int32 grade = 1;
+    required int32 item_no = 2;
+    required int32 item_photo = 3;
+    required int32 step = 4;
+    required string item_name = 5;
+    required string tips = 6; 
+}
+
+message S2c_guide_upgrade_item {            //物品
+    required int32 grade = 1;
+    required int32 item_no = 2;
+    required int32 item_photo = 3;
+    required int32 step = 4;
+    required string item_name = 5;
+    required string tips = 6; 
+}
+
+message C2s_guide_get_gift {
+    required int32 grade = 1;
+}
+
+message S2c_guide_get_gift {
+    required int32 place_holder = 1;
+}

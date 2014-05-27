@@ -1,0 +1,742 @@
+--- 
+-- 闭关修炼表
+-- 该文件为代码自动生成，请不要手动修改
+-- @module xls.XiuLianXls
+-- 
+
+module("xls.XiuLianXls")
+
+--- 
+-- @type XiuLianXls
+-- @field	#number	Cash	所需银两	 
+-- @field	#number	Grade	卡牌等级	 
+-- @field	#number	Time	修炼时间	 
+-- @field	#number	LastGiveExp	最终可获得经验	notNull
+-- 
+
+--- 
+-- XiuLianXls
+-- @field [parent=#xls.XiuLianXls] #XiuLianXls XiuLianXls
+-- 
+
+--- 
+-- data
+-- @field [parent=#xls.XiuLianXls] #table data Grade -> @{XiuLianXls}表
+-- 
+data = 
+{
+	[1] = {
+		["Cash"] = 7200,
+		["Grade"] = 1,
+		["Time"] = 4,
+		["LastGiveExp"] = 4800,
+	},
+	[2] = {
+		["Cash"] = 7560,
+		["Grade"] = 2,
+		["Time"] = 4,
+		["LastGiveExp"] = 5040,
+	},
+	[3] = {
+		["Cash"] = 7560,
+		["Grade"] = 3,
+		["Time"] = 4,
+		["LastGiveExp"] = 5040,
+	},
+	[4] = {
+		["Cash"] = 7920,
+		["Grade"] = 4,
+		["Time"] = 4,
+		["LastGiveExp"] = 5280,
+	},
+	[5] = {
+		["Cash"] = 7920,
+		["Grade"] = 5,
+		["Time"] = 4,
+		["LastGiveExp"] = 5280,
+	},
+	[6] = {
+		["Cash"] = 8280,
+		["Grade"] = 6,
+		["Time"] = 4,
+		["LastGiveExp"] = 5520,
+	},
+	[7] = {
+		["Cash"] = 8280,
+		["Grade"] = 7,
+		["Time"] = 4,
+		["LastGiveExp"] = 5520,
+	},
+	[8] = {
+		["Cash"] = 8640,
+		["Grade"] = 8,
+		["Time"] = 4,
+		["LastGiveExp"] = 5760,
+	},
+	[9] = {
+		["Cash"] = 8640,
+		["Grade"] = 9,
+		["Time"] = 4,
+		["LastGiveExp"] = 5760,
+	},
+	[10] = {
+		["Cash"] = 9000,
+		["Grade"] = 10,
+		["Time"] = 4,
+		["LastGiveExp"] = 6000,
+	},
+	[11] = {
+		["Cash"] = 9360,
+		["Grade"] = 11,
+		["Time"] = 4,
+		["LastGiveExp"] = 6240,
+	},
+	[12] = {
+		["Cash"] = 9720,
+		["Grade"] = 12,
+		["Time"] = 4,
+		["LastGiveExp"] = 6480,
+	},
+	[13] = {
+		["Cash"] = 10080,
+		["Grade"] = 13,
+		["Time"] = 4,
+		["LastGiveExp"] = 6720,
+	},
+	[14] = {
+		["Cash"] = 10440,
+		["Grade"] = 14,
+		["Time"] = 4,
+		["LastGiveExp"] = 6960,
+	},
+	[15] = {
+		["Cash"] = 10800,
+		["Grade"] = 15,
+		["Time"] = 4,
+		["LastGiveExp"] = 7200,
+	},
+	[16] = {
+		["Cash"] = 11160,
+		["Grade"] = 16,
+		["Time"] = 4,
+		["LastGiveExp"] = 7440,
+	},
+	[17] = {
+		["Cash"] = 11520,
+		["Grade"] = 17,
+		["Time"] = 4,
+		["LastGiveExp"] = 7680,
+	},
+	[18] = {
+		["Cash"] = 11880,
+		["Grade"] = 18,
+		["Time"] = 4,
+		["LastGiveExp"] = 7920,
+	},
+	[19] = {
+		["Cash"] = 12600,
+		["Grade"] = 19,
+		["Time"] = 4,
+		["LastGiveExp"] = 8400,
+	},
+	[20] = {
+		["Cash"] = 12960,
+		["Grade"] = 20,
+		["Time"] = 4,
+		["LastGiveExp"] = 8640,
+	},
+	[21] = {
+		["Cash"] = 13320,
+		["Grade"] = 21,
+		["Time"] = 4,
+		["LastGiveExp"] = 8880,
+	},
+	[22] = {
+		["Cash"] = 13680,
+		["Grade"] = 22,
+		["Time"] = 4,
+		["LastGiveExp"] = 9120,
+	},
+	[23] = {
+		["Cash"] = 14400,
+		["Grade"] = 23,
+		["Time"] = 4,
+		["LastGiveExp"] = 9600,
+	},
+	[24] = {
+		["Cash"] = 15120,
+		["Grade"] = 24,
+		["Time"] = 4,
+		["LastGiveExp"] = 10080,
+	},
+	[25] = {
+		["Cash"] = 15480,
+		["Grade"] = 25,
+		["Time"] = 4,
+		["LastGiveExp"] = 10320,
+	},
+	[26] = {
+		["Cash"] = 16200,
+		["Grade"] = 26,
+		["Time"] = 4,
+		["LastGiveExp"] = 10800,
+	},
+	[27] = {
+		["Cash"] = 16560,
+		["Grade"] = 27,
+		["Time"] = 4,
+		["LastGiveExp"] = 11040,
+	},
+	[28] = {
+		["Cash"] = 17280,
+		["Grade"] = 28,
+		["Time"] = 4,
+		["LastGiveExp"] = 11520,
+	},
+	[29] = {
+		["Cash"] = 18000,
+		["Grade"] = 29,
+		["Time"] = 4,
+		["LastGiveExp"] = 12000,
+	},
+	[30] = {
+		["Cash"] = 18360,
+		["Grade"] = 30,
+		["Time"] = 4,
+		["LastGiveExp"] = 12240,
+	},
+	[31] = {
+		["Cash"] = 19080,
+		["Grade"] = 31,
+		["Time"] = 4,
+		["LastGiveExp"] = 12720,
+	},
+	[32] = {
+		["Cash"] = 19800,
+		["Grade"] = 32,
+		["Time"] = 4,
+		["LastGiveExp"] = 13200,
+	},
+	[33] = {
+		["Cash"] = 20160,
+		["Grade"] = 33,
+		["Time"] = 4,
+		["LastGiveExp"] = 13440,
+	},
+	[34] = {
+		["Cash"] = 20880,
+		["Grade"] = 34,
+		["Time"] = 4,
+		["LastGiveExp"] = 13920,
+	},
+	[35] = {
+		["Cash"] = 21960,
+		["Grade"] = 35,
+		["Time"] = 4,
+		["LastGiveExp"] = 14640,
+	},
+	[36] = {
+		["Cash"] = 22680,
+		["Grade"] = 36,
+		["Time"] = 4,
+		["LastGiveExp"] = 15120,
+	},
+	[37] = {
+		["Cash"] = 23760,
+		["Grade"] = 37,
+		["Time"] = 4,
+		["LastGiveExp"] = 15840,
+	},
+	[38] = {
+		["Cash"] = 24480,
+		["Grade"] = 38,
+		["Time"] = 4,
+		["LastGiveExp"] = 16320,
+	},
+	[39] = {
+		["Cash"] = 25560,
+		["Grade"] = 39,
+		["Time"] = 4,
+		["LastGiveExp"] = 17040,
+	},
+	[40] = {
+		["Cash"] = 26640,
+		["Grade"] = 40,
+		["Time"] = 4,
+		["LastGiveExp"] = 17760,
+	},
+	[41] = {
+		["Cash"] = 27360,
+		["Grade"] = 41,
+		["Time"] = 4,
+		["LastGiveExp"] = 18240,
+	},
+	[42] = {
+		["Cash"] = 28440,
+		["Grade"] = 42,
+		["Time"] = 4,
+		["LastGiveExp"] = 18960,
+	},
+	[43] = {
+		["Cash"] = 29520,
+		["Grade"] = 43,
+		["Time"] = 4,
+		["LastGiveExp"] = 19680,
+	},
+	[44] = {
+		["Cash"] = 30600,
+		["Grade"] = 44,
+		["Time"] = 4,
+		["LastGiveExp"] = 20400,
+	},
+	[45] = {
+		["Cash"] = 31680,
+		["Grade"] = 45,
+		["Time"] = 4,
+		["LastGiveExp"] = 21120,
+	},
+	[46] = {
+		["Cash"] = 32760,
+		["Grade"] = 46,
+		["Time"] = 4,
+		["LastGiveExp"] = 21840,
+	},
+	[47] = {
+		["Cash"] = 33840,
+		["Grade"] = 47,
+		["Time"] = 4,
+		["LastGiveExp"] = 22560,
+	},
+	[48] = {
+		["Cash"] = 35280,
+		["Grade"] = 48,
+		["Time"] = 4,
+		["LastGiveExp"] = 23520,
+	},
+	[49] = {
+		["Cash"] = 36360,
+		["Grade"] = 49,
+		["Time"] = 4,
+		["LastGiveExp"] = 24240,
+	},
+	[50] = {
+		["Cash"] = 37800,
+		["Grade"] = 50,
+		["Time"] = 4,
+		["LastGiveExp"] = 25200,
+	},
+	[51] = {
+		["Cash"] = 38880,
+		["Grade"] = 51,
+		["Time"] = 4,
+		["LastGiveExp"] = 25920,
+	},
+	[52] = {
+		["Cash"] = 40320,
+		["Grade"] = 52,
+		["Time"] = 4,
+		["LastGiveExp"] = 26880,
+	},
+	[53] = {
+		["Cash"] = 41760,
+		["Grade"] = 53,
+		["Time"] = 4,
+		["LastGiveExp"] = 27840,
+	},
+	[54] = {
+		["Cash"] = 42840,
+		["Grade"] = 54,
+		["Time"] = 4,
+		["LastGiveExp"] = 28560,
+	},
+	[55] = {
+		["Cash"] = 44280,
+		["Grade"] = 55,
+		["Time"] = 4,
+		["LastGiveExp"] = 29520,
+	},
+	[56] = {
+		["Cash"] = 45720,
+		["Grade"] = 56,
+		["Time"] = 4,
+		["LastGiveExp"] = 30480,
+	},
+	[57] = {
+		["Cash"] = 47520,
+		["Grade"] = 57,
+		["Time"] = 4,
+		["LastGiveExp"] = 31680,
+	},
+	[58] = {
+		["Cash"] = 48960,
+		["Grade"] = 58,
+		["Time"] = 4,
+		["LastGiveExp"] = 32640,
+	},
+	[59] = {
+		["Cash"] = 50400,
+		["Grade"] = 59,
+		["Time"] = 4,
+		["LastGiveExp"] = 33600,
+	},
+	[60] = {
+		["Cash"] = 52200,
+		["Grade"] = 60,
+		["Time"] = 4,
+		["LastGiveExp"] = 34800,
+	},
+	[61] = {
+		["Cash"] = 54000,
+		["Grade"] = 61,
+		["Time"] = 4,
+		["LastGiveExp"] = 36000,
+	},
+	[62] = {
+		["Cash"] = 55440,
+		["Grade"] = 62,
+		["Time"] = 4,
+		["LastGiveExp"] = 36960,
+	},
+	[63] = {
+		["Cash"] = 57240,
+		["Grade"] = 63,
+		["Time"] = 4,
+		["LastGiveExp"] = 38160,
+	},
+	[64] = {
+		["Cash"] = 59400,
+		["Grade"] = 64,
+		["Time"] = 4,
+		["LastGiveExp"] = 39600,
+	},
+	[65] = {
+		["Cash"] = 61200,
+		["Grade"] = 65,
+		["Time"] = 4,
+		["LastGiveExp"] = 40800,
+	},
+	[66] = {
+		["Cash"] = 63000,
+		["Grade"] = 66,
+		["Time"] = 4,
+		["LastGiveExp"] = 42000,
+	},
+	[67] = {
+		["Cash"] = 65160,
+		["Grade"] = 67,
+		["Time"] = 4,
+		["LastGiveExp"] = 43440,
+	},
+	[68] = {
+		["Cash"] = 67320,
+		["Grade"] = 68,
+		["Time"] = 4,
+		["LastGiveExp"] = 44880,
+	},
+	[69] = {
+		["Cash"] = 69480,
+		["Grade"] = 69,
+		["Time"] = 4,
+		["LastGiveExp"] = 46320,
+	},
+	[70] = {
+		["Cash"] = 71640,
+		["Grade"] = 70,
+		["Time"] = 4,
+		["LastGiveExp"] = 47760,
+	},
+	[71] = {
+		["Cash"] = 73800,
+		["Grade"] = 71,
+		["Time"] = 4,
+		["LastGiveExp"] = 49200,
+	},
+	[72] = {
+		["Cash"] = 76320,
+		["Grade"] = 72,
+		["Time"] = 4,
+		["LastGiveExp"] = 50880,
+	},
+	[73] = {
+		["Cash"] = 78480,
+		["Grade"] = 73,
+		["Time"] = 4,
+		["LastGiveExp"] = 52320,
+	},
+	[74] = {
+		["Cash"] = 81000,
+		["Grade"] = 74,
+		["Time"] = 4,
+		["LastGiveExp"] = 54000,
+	},
+	[75] = {
+		["Cash"] = 83520,
+		["Grade"] = 75,
+		["Time"] = 4,
+		["LastGiveExp"] = 55680,
+	},
+	[76] = {
+		["Cash"] = 86040,
+		["Grade"] = 76,
+		["Time"] = 4,
+		["LastGiveExp"] = 57360,
+	},
+	[77] = {
+		["Cash"] = 88560,
+		["Grade"] = 77,
+		["Time"] = 4,
+		["LastGiveExp"] = 59040,
+	},
+	[78] = {
+		["Cash"] = 91440,
+		["Grade"] = 78,
+		["Time"] = 4,
+		["LastGiveExp"] = 60960,
+	},
+	[79] = {
+		["Cash"] = 93960,
+		["Grade"] = 79,
+		["Time"] = 4,
+		["LastGiveExp"] = 62640,
+	},
+	[80] = {
+		["Cash"] = 96840,
+		["Grade"] = 80,
+		["Time"] = 4,
+		["LastGiveExp"] = 64560,
+	},
+	[81] = {
+		["Cash"] = 99720,
+		["Grade"] = 81,
+		["Time"] = 4,
+		["LastGiveExp"] = 66480,
+	},
+	[82] = {
+		["Cash"] = 102600,
+		["Grade"] = 82,
+		["Time"] = 4,
+		["LastGiveExp"] = 68400,
+	},
+	[83] = {
+		["Cash"] = 105840,
+		["Grade"] = 83,
+		["Time"] = 4,
+		["LastGiveExp"] = 70560,
+	},
+	[84] = {
+		["Cash"] = 108720,
+		["Grade"] = 84,
+		["Time"] = 4,
+		["LastGiveExp"] = 72480,
+	},
+	[85] = {
+		["Cash"] = 111960,
+		["Grade"] = 85,
+		["Time"] = 4,
+		["LastGiveExp"] = 74640,
+	},
+	[86] = {
+		["Cash"] = 114840,
+		["Grade"] = 86,
+		["Time"] = 4,
+		["LastGiveExp"] = 76560,
+	},
+	[87] = {
+		["Cash"] = 118080,
+		["Grade"] = 87,
+		["Time"] = 4,
+		["LastGiveExp"] = 78720,
+	},
+	[88] = {
+		["Cash"] = 121680,
+		["Grade"] = 88,
+		["Time"] = 4,
+		["LastGiveExp"] = 81120,
+	},
+	[89] = {
+		["Cash"] = 124920,
+		["Grade"] = 89,
+		["Time"] = 4,
+		["LastGiveExp"] = 83280,
+	},
+	[90] = {
+		["Cash"] = 128520,
+		["Grade"] = 90,
+		["Time"] = 4,
+		["LastGiveExp"] = 85680,
+	},
+	[91] = {
+		["Cash"] = 131760,
+		["Grade"] = 91,
+		["Time"] = 4,
+		["LastGiveExp"] = 87840,
+	},
+	[92] = {
+		["Cash"] = 135360,
+		["Grade"] = 92,
+		["Time"] = 4,
+		["LastGiveExp"] = 90240,
+	},
+	[93] = {
+		["Cash"] = 138960,
+		["Grade"] = 93,
+		["Time"] = 4,
+		["LastGiveExp"] = 92640,
+	},
+	[94] = {
+		["Cash"] = 142920,
+		["Grade"] = 94,
+		["Time"] = 4,
+		["LastGiveExp"] = 95280,
+	},
+	[95] = {
+		["Cash"] = 146520,
+		["Grade"] = 95,
+		["Time"] = 4,
+		["LastGiveExp"] = 97680,
+	},
+	[96] = {
+		["Cash"] = 150480,
+		["Grade"] = 96,
+		["Time"] = 4,
+		["LastGiveExp"] = 100320,
+	},
+	[97] = {
+		["Cash"] = 154440,
+		["Grade"] = 97,
+		["Time"] = 4,
+		["LastGiveExp"] = 102960,
+	},
+	[98] = {
+		["Cash"] = 158400,
+		["Grade"] = 98,
+		["Time"] = 4,
+		["LastGiveExp"] = 105600,
+	},
+	[99] = {
+		["Cash"] = 162360,
+		["Grade"] = 99,
+		["Time"] = 4,
+		["LastGiveExp"] = 108240,
+	},
+	[100] = {
+		["Cash"] = 166320,
+		["Grade"] = 100,
+		["Time"] = 4,
+		["LastGiveExp"] = 110880,
+	},
+	[101] = {
+		["Cash"] = 170640,
+		["Grade"] = 101,
+		["Time"] = 4,
+		["LastGiveExp"] = 113760,
+	},
+	[102] = {
+		["Cash"] = 174960,
+		["Grade"] = 102,
+		["Time"] = 4,
+		["LastGiveExp"] = 116640,
+	},
+	[103] = {
+		["Cash"] = 179280,
+		["Grade"] = 103,
+		["Time"] = 4,
+		["LastGiveExp"] = 119520,
+	},
+	[104] = {
+		["Cash"] = 183600,
+		["Grade"] = 104,
+		["Time"] = 4,
+		["LastGiveExp"] = 122400,
+	},
+	[105] = {
+		["Cash"] = 188280,
+		["Grade"] = 105,
+		["Time"] = 4,
+		["LastGiveExp"] = 125520,
+	},
+	[106] = {
+		["Cash"] = 192960,
+		["Grade"] = 106,
+		["Time"] = 4,
+		["LastGiveExp"] = 128640,
+	},
+	[107] = {
+		["Cash"] = 197640,
+		["Grade"] = 107,
+		["Time"] = 4,
+		["LastGiveExp"] = 131760,
+	},
+	[108] = {
+		["Cash"] = 202320,
+		["Grade"] = 108,
+		["Time"] = 4,
+		["LastGiveExp"] = 134880,
+	},
+	[109] = {
+		["Cash"] = 207000,
+		["Grade"] = 109,
+		["Time"] = 4,
+		["LastGiveExp"] = 138000,
+	},
+	[110] = {
+		["Cash"] = 212040,
+		["Grade"] = 110,
+		["Time"] = 4,
+		["LastGiveExp"] = 141360,
+	},
+	[111] = {
+		["Cash"] = 217080,
+		["Grade"] = 111,
+		["Time"] = 4,
+		["LastGiveExp"] = 144720,
+	},
+	[112] = {
+		["Cash"] = 222120,
+		["Grade"] = 112,
+		["Time"] = 4,
+		["LastGiveExp"] = 148080,
+	},
+	[113] = {
+		["Cash"] = 227160,
+		["Grade"] = 113,
+		["Time"] = 4,
+		["LastGiveExp"] = 151440,
+	},
+	[114] = {
+		["Cash"] = 232200,
+		["Grade"] = 114,
+		["Time"] = 4,
+		["LastGiveExp"] = 154800,
+	},
+	[115] = {
+		["Cash"] = 237600,
+		["Grade"] = 115,
+		["Time"] = 4,
+		["LastGiveExp"] = 158400,
+	},
+	[116] = {
+		["Cash"] = 243000,
+		["Grade"] = 116,
+		["Time"] = 4,
+		["LastGiveExp"] = 162000,
+	},
+	[117] = {
+		["Cash"] = 248400,
+		["Grade"] = 117,
+		["Time"] = 4,
+		["LastGiveExp"] = 165600,
+	},
+	[118] = {
+		["Cash"] = 254160,
+		["Grade"] = 118,
+		["Time"] = 4,
+		["LastGiveExp"] = 169440,
+	},
+	[119] = {
+		["Cash"] = 259560,
+		["Grade"] = 119,
+		["Time"] = 4,
+		["LastGiveExp"] = 173040,
+	},
+}

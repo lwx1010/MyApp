@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="ks_login_title">金山账号登录</string>
+    <string name="ks_quick_login_title">快速登录</string>
+    <string name="ks_sign_in_title">金山账号注册</string>
+    <string name="ks_select_account_title">选择账号</string>
+    <string name="ks_back">返回</string>
+    <string name="ks_usr_account">账号：</string>
+    <string name="ks_usr_psw">密码：</string>
+    <string name="ks_login_btn">登录</string>
+    <string name="ks_signin">注册</string>
+    <string name="ks_signin_tip">还没有金山账号?马上注册>></string>
+    <string name="ks_switch_user">切换帐号</string>
+    <string name="ks_signin_usr_hint">请输入大于4位的帐号</string>
+    <string name="ks_signin_psw_hint">请输入大于6位的密码</string>
+    <string name="ks_signin_usr_remind">*建议使用手机号，方便好记</string>
+    <string name="ks_signin_psw_remind">*必填</string>
+    <string name="ks_clause_cb">我已阅读并同意遵守</string>
+    <string name="ks_clause_tv">《金山服务条款》</string>
+    <string name="ks_clause_tip">请勾选已阅读《金山服务条款》</string>
+    <string name="ks_quick_login">免注册快速登录</string>
+    <string name="ks_signin_success">注册成功，点击登录</string>
+    <string name="ks_account_detail">用户账号列表</string>
+    <string name="ks_generate_tip_top">以下是系统为您生成的随机账号</string>
+    <string name="ks_generate_tip">*温馨提示:</string>
+    <string name="ks_generate_save_tip">建议您使用手机的截屏功能将本界面保存，以免忘记账号</string>
+    <string name="ks_login_success">登录成功</string>
+    <string name="ks_processing"></string>
+    <string name="ks_enter_name_processing"></string>
+    <string name="ks_network_invailable">当前网络不可用，请检查网络状态</string>
+    <string name="ks_enter_game">进入游戏</string>
+    <string name="ks_select_other_account">使用其他账号登录</string>
+    
+    <string name="ks_usrname_pattern_error">用户名格式错误，请输入4~18位数字或字母，并且以字母开头</string>
+    <string name="ks_usrpsw_pattern_error">密码格式错误，请输入6~32位数字或字母</string>
+    <string name="ks_usrutk_wrong">账号已过期，请重新登录</string>
+    
+    <string name="ks_err_unknown">未知错误</string>
+    <string name="ks_err_psw">密码格式错误，请输入6~32位数字或字母</string>
+    <string name="ks_err_reset_psw">用户名或密码错误，请重新输入</string>
+    <string name="ks_err_usrname">用户名格式错误，请输入4~18位数字或字母，并且以字母开头</string>
+    <string name="ks_err_usrname_exist">用户名已存在</string>
+    <string name="ks_err_account_not_exist">用户名不存在</string>
+    <string name="ks_err_psw_over_time">密码输入错误次数过多</string>
+    <string name="ks_err_generate_fail">生成账号失败</string>
+    <string name="ks_err_generate_over_time">生成账号次数过多，请明天再试</string>
+    <string name="ks_err_generate_un_login">登录状态已过期，请重新输入密码进行登录</string>
+    <string name="ks_err_generate_err_param">参数错误</string>
+    <string name="ks_err_generate_usr_exist">用户已存在</string>
+    <string name="ks_err_generate_err_usrname">用户名格式错误</string>
+    <string name="ks_err_generate_err_pin">验证码错误</string>
+    <string name="ks_err_generate_uid_not_exist">uid不存在</string>
+    <string name="ks_err_generate_err_sign_checkout">sign签名校验错误</string>
+    <string name="ks_err_generate_err_generate_fail">生成账号失败</string>
+    <string name="ks_err_generate_err_supplierid">supplier_id错误</string>
+    <string name="ks_err_generate_err_generate_over_time">超过一天最大生成账号次数</string>
+    
+</resources>

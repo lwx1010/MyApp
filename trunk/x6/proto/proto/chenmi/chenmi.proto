@@ -1,0 +1,4 @@
+//防沉迷信息
+message S2c_chat_chenmi {
+	required string info = 1;		//提示信息
+}

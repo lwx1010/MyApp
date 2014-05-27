@@ -1,0 +1,28 @@
+
+//基本信息
+message C2s_loginbonus_info {
+	required int32 index = 1; //占位符
+}
+
+//发送基本信息
+message S2c_loginbonus_info {
+	required int32 login_num = 1;//连续登陆天数,此处只会发生1,2,3
+	required int32 can_play = 2;//能否进行游戏 1能 0不能
+}
+
+//开始转动老虎机 第一步
+message C2s_loginbonus_play {
+	required int32 index = 1;//占位符
+}
+
+//发送抽到的奖励 第二步
+message S2c_loginbonus_play {
+	required int32 bonus_no1 = 1;	//第一天奖励序号
+	required int32 bonus_no2 = 2;	//第二天奖励序号
+	required int32 bonus_no3 = 3;	//第三天奖励序号
+}
+
+//播放完毕 第三步
+message C2s_loginbonus_playend {
+	required int32 index = 1;//占位符
+}

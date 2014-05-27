@@ -1,0 +1,40 @@
+message C2s_buff_count_buy {
+    required int32 b_count = 1;
+}
+
+message C2s_buff_add {
+    required int32 item_id = 1;
+}
+
+message Buff_prop {
+    required string prop_name = 1;    //Hp血,Ap攻击,Dp防御,Speed速度,Double暴击,ReDouble抗暴,HitRate命中,Dodge躲避
+    required int32 rate = 2;    //万分比
+}
+
+message Buff_prop2 {
+    required string prop_name = 1;    //Hp血,Ap攻击,Dp防御,Speed速度,Double暴击,ReDouble抗暴,HitRate命中,Dodge躲避
+    required int32 count = 2;
+    required int32 rate = 3;    //万分比
+    required int32 rest_time = 4;     //剩余时间
+}
+
+message S2c_buff_add {
+    required int32 type = 1;    //1：成功，2：存在相同参悟属性，3：达到4个参悟，4次数不足，5，其他
+    optional Buff_prop now_prop = 2;
+    repeated Buff_prop has_prop = 3;
+}
+
+message S2c_buff_msg {
+    required int32 use_count = 1;               //今天使用次数
+    required int32 buy_count = 2;               //已经购买的次数
+    required int32 free_count = 3;              //免费使用的次数
+    repeated Buff_prop2 has_prop = 4;
+}
+
+message C2s_buff_msg {
+    required int32 place_holder = 1;
+}
+
+message C2s_buff_change {
+    required string change_name = 1;
+}

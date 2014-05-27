@@ -1,0 +1,221 @@
+message Partner_list_info {				//同伴列表信息
+	required int32 Id = 1;				//同伴Runtime Id
+	required int32 Photo = 2;			//同伴头像
+	required string Name = 3;			//同伴名称
+	required int32 War = 4;				//参战阵型位置 0为不参战
+	required int32 Step = 5;			//阶位
+	required int32 Grade = 6;			//等级
+	required int32 Birthday = 7;		//生成时间(排序根据)
+	required int32 Star = 8;			//星级
+	required int32 Price = 9;			//出售价格
+	required int32 PartnerNo = 10;		//同伴编号
+	required int32 CanUpStarNum = 11;	//最大能升级到几星
+	required int32 Type = 12;			//特性 1进攻型 2防守型 3均衡型 4内力狂人
+	required int32 ShowExp = 13;		//显示经验
+	required int32 MaxExp = 14;			//显示最大经验
+	required int32 XiuLian = 15;		//修炼状态 1正在修炼 0未修炼
+	required int32 SetCardID = 16;		//篇章
+	required int32 Score = 17;			//综合实力分数
+	required int32 Exp = 18;			//经验
+	required int32 Neili = 19;			//内力
+}
+
+message S2c_partner_list {				//发送同伴列表(包含出战同伴)
+	repeated Partner_list_info partner_list = 1; //列表
+}
+
+message C2s_partner_list {				//请求全部列表
+	required int32 place_holder = 1;	
+}
+
+message S2c_partner_warlist {			//发送出战同伴列表
+	repeated Partner_list_info partner_list = 1; //列表
+}
+
+message C2s_partner_warlist {			//请求出战同伴列表
+	required int32 place_holder = 1;	
+}
+
+message Partner_base_info {				//发送同伴基础属性
+	required string key = 1;			//key
+	required string type = 2;			//类型 string number table
+	optional int32 value_int  = 3;		//整型值
+	optional string value_str = 4;		//字符串值
+	repeated int32 value_array = 5;		//数组
+}
+
+message C2s_partner_baseinfo {
+	required int32 id = 1;				//获取同伴属性列表
+	repeated string key = 2;			//key值列表
+	required string ui_id = 3;		//界面id
+}
+
+message S2c_partner_baseinfo {
+	required int32 id = 1;				//同伴ID
+	repeated Partner_base_info list_info = 2;
+	optional string ui_id = 3;		//界面id
+}
+
+
+message C2s_partner_set_fight {			//设置同伴参战/休息(替换上阵，直接发此协议即可)
+	required int32 id = 1;
+	required int32 iswar = 2;			//是否参战 0不参战 1出战
+	required int32 pos = 3;				//阵型位置 1-9
+}
+
+message S2c_partner_set_fight {
+	required int32 id = 1;
+}
+
+message C2s_partner_set_lineup {	//设置同伴出战位置
+	required int32 id = 1;	//同伴运行id
+	required int32 pos = 2;	//位置
+}
+
+message S2c_partner_set_lineup {
+	required int32 score = 1;		//综合实力分数
+}
+
+message C2s_partner_del {
+	required int32 id = 1;				//删除同伴
+}
+
+message C2s_partner_sell {				//客户端请求出售侠客
+	required int32 id = 1;				//侠客ID
+}
+
+message S2c_partner_del {
+	required int32 id = 1;				//删除同伴
+}
+
+message S2c_partner_sell {
+	required int32 id = 1;				//出售成功
+}
+
+message S2c_partner_add {				//添加同伴
+	required Partner_list_info info = 1;
+}	
+
+//查看同伴装备信息
+message C2s_partner_equip_info {
+	required int32 partner_id = 1;	//同伴运行id
+	required int32 equip_type = 2;	//1为装备2为武学
+}
+
+message Partner_equip_info {
+	required int32 id = 1;			//装备运行id
+	required string name = 2;		//名称
+	required int32 grade = 3;		//等级
+	required int32 icon = 4;		//图标
+	required int32 subkind = 5; //装备子类型 1武器 2衣服 3首饰
+	required int32 rare = 6;	//稀有度
+	required int32 is_shengbing = 7;//是否为神兵 1是 0不是
+	required int32 step = 8;	//神兵阶位
+}
+
+//发送同伴装备信息
+message S2c_partner_equip_list {
+	required int32 partner_id = 1;	//同伴运行id
+	required int32 equip_type = 2;	//1为装备2为武学
+	repeated Partner_equip_info equip_list = 3;
+}
+
+//查看同伴详细信息
+message C2s_partner_minute_info {
+	required int32 partner_id = 1;
+	optional string ui_id = 2;
+}
+
+message Partner_nature {
+	required int32 str = 1;	//力量
+	required int32 con = 2;	//体魄
+	required int32 sta = 3;	//耐力
+	required int32 dex = 4;	//敏捷
+}
+
+//发送同伴详细信息
+message S2c_partner_minute_info {
+	required int32 partner_id = 1;	//同伴运行id
+	required Partner_nature base_nature = 2;	//同伴基本属性
+	required Partner_nature add_nature = 3;	//同伴加成属性
+	required Partner_nature ty_nature = 4;  //汤圆加成属性
+	required int32 partner_type = 5;	//同伴特征1进攻型 2防守型 3均衡型 4内力狂人
+	optional string martial_name = 6;	//天赋技能
+	required string setcard_name = 7;	//所属套卡名称
+	required int32 sum_setcard_num = 8;	//套卡数量
+	required int32 setcard_num = 9;	//当前套卡顺序
+	optional int32 talent = 10;	//命数
+	required int32 is_war = 11; 	//是否出战 1出战 2能出战 3不能出战
+	optional string ui_id = 12;
+}
+
+//遗忘技能
+message C2s_partner_deltalent {
+	required int32 partner_id = 1;
+}
+
+message S2c_partner_deltalent {
+	required int32 partner_id = 1;
+}
+
+//主界面侠客位置
+message Partner_war_no_list {
+	required int32 partner_id = 1; //侠客运行id
+	required int32 war_id = 2;	//侠客界面位置 1-6
+}
+
+//客户端发送主界面侠客显示位置
+message C2s_partner_war_no_list {
+	repeated Partner_war_no_list warlist = 1;
+}
+
+//打开布阵界面
+message C2s_partner_lineup_list {
+	required int32 index = 1;
+}
+
+message Partner_war_info {
+	required int32 Id = 1;				//同伴Runtime Id
+	required int32 Photo = 2;			//同伴头像
+	required string Name = 3;			//同伴名称
+	required int32 War = 4;				//参战阵型位置 0为不参战
+	required int32 Step = 5;			//阶位
+	required int32 Grade = 6;			//等级
+	required int32 NuLineupAp = 7;		//不含阵法属性攻击
+	required int32 NuLineupDp = 8;		//不含阵法属性防御
+	required int32 NuLineupHpMax = 9;	//不含阵法属性生命
+	required int32 NuLineupSpeed = 10;	//不含阵法属性速度
+}
+
+//发送布阵界面信息
+message S2c_partner_lineup_info {
+	repeated Partner_war_info war_info = 1;
+}
+
+message C2s_fjpartner_fenjie {
+    required int32 id = 1;
+}
+
+//侠客传功
+message C2s_partner_chuangong {
+	required int32 src_id = 1;		//源侠客
+	required int32 des_id = 2;		//目标侠客
+	required int32 type = 3;		//1普通传功 2高级传功
+}
+
+message S2c_partner_chuangong {
+	required int32 des_grade1 = 1;	//原始等级
+	required int32 des_grade2 = 2;	//传功后等级
+}
+
+message C2s_partner_cginfo {
+	required int32 place_holder = 1;	//获取传功信息
+}
+
+message S2c_partner_cginfo {
+	required int32 cash = 1;			//所需银两
+	required int32 yuanbao = 2;			//所需元宝
+	required int32 max_grade = 3;		//最大等级
+	required int32 norexp = 4;			//普通传功获得经验比率 客户端自己除以100
+	required int32 advexp = 5;			//高级传功获得经验比率
+}

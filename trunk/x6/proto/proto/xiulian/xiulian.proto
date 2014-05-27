@@ -1,0 +1,38 @@
+message C2s_xiulian_partner_list {	//获取正在修炼的同伴信息
+	required int32 index = 1;
+}
+
+message Xiulian_partner_list {
+	required int32 partner_id = 1;//同伴运行id
+	required int32 over_time = 2;	//修炼剩余时间
+	required int32 give_exp = 3;	//当前获得修炼经验
+	required int32 can_quicken = 4;	//能否进行加速 1能 0不能
+	required int32 quicken_yb = 5; //加速所需元宝
+	required int32 partner_icon = 6;//头像
+	required int32 giveall_exp = 7;	//最终可获得经验
+	required int32 give_exp_min = 8;//每分钟给予经验值
+	required int32 partner_grade = 9;	//等级
+	required string partner_name = 10;	//名称
+	required int32 partner_step = 11;	//品阶
+	required int32 partner_star = 12;	//星级
+	required int32 partner_star_max = 13;//最大星级
+}
+
+message S2c_xiulian_partner_list {	//发送正在修炼同伴信息
+	repeated Xiulian_partner_list partner_list = 1;
+}
+
+
+message C2s_xiulian_xiulian {		//开始修炼
+	required int32 partner_id = 1;	//同伴运行id
+}
+
+
+message C2s_xiulian_quicken {		//修炼加速
+	required int32 partner_id = 1;	//同伴运行id
+}
+
+
+message C2s_xiulian_give {			//领取修炼奖励
+	required int32 partner_id = 1;	//同伴运行id
+}

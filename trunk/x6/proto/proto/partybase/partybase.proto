@@ -1,0 +1,23 @@
+message Partybase_act_info {        //注意：表中有的活动编号可能会没有发送，那么这个活动就表示在进行中
+    required int32 party_no = 1;
+    required int32 is_act = 2;      //1是活动中，0是结束了
+}
+
+message S2c_partybase_sign {            //图标现实
+    required int32 is_sign = 1;         //1表示显示，2表示隐藏
+    repeated Partybase_act_info party_infos = 2;        //运营id 
+}
+
+message S2c_partybase_placehold {       //无效协议，因为无法单独一个协议存在，所以。。。
+    required int32 place_hold = 1;
+}
+
+message C2s_partybase_1014_buy {        
+    required int32 gift_id = 1;
+}
+
+message S2c_partybase_1014_info {
+    required int32 gift_id = 1;
+    required int32 type = 2;            //1开启，2关闭
+    required int32 is_login = 3;        //1是，0否
+}

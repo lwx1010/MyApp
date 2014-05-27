@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+        <LinearLayout
+            android:id="@+id/login_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/ks_bg_title"
+                android:padding="10dp"
+                android:orientation="horizontal" >
+                
+                <Button android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ks_btn_back"/>
+                
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/ks_quick_login_title"
+                    android:textSize="20sp"
+                    android:textColor="#FFEDEFEF"
+                    />
+                
+                <Button android:id="@+id/close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:visibility="gone"
+                    android:background="@drawable/ks_btn_close_selector"
+                    />
+            </RelativeLayout>
+            
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="15dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:background="@drawable/ks_bg_up">
+                
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:textColor="#77000000"
+                    android:textSize="15sp"
+                    android:text="@string/ks_generate_tip_top"
+                    />
+                
+                <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <EditText android:id="@+id/account_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="55dp"
+                            android:hint="@string/ks_usr_account"
+                            android:drawableLeft="@drawable/ks_usr_selector"
+                            android:drawablePadding="10dp"
+                            android:singleLine="true"
+                            android:focusable="false"
+                            android:textColor="#000000"
+                            android:background="#FFFFFF"
+                			android:paddingLeft="10dip"
+                            android:layout_toLeftOf="@+id/err_usr_info"
+                            />
+                    <TextView android:id="@+id/err_usr_info"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_alignTop="@id/account_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        android:textColor="#FFFF0000"
+                        />
+                    <EditText android:id="@+id/psw_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="55dp"
+                            android:layout_toLeftOf="@+id/err_psw_info"
+                            android:layout_below="@id/account_content"
+                            android:hint="@string/ks_usr_psw"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:background="#FFFFFF"
+                			android:paddingLeft="10dip"
+                			android:layout_marginTop="2dip"
+                            android:drawableLeft="@drawable/ks_psw_selector"
+                            android:drawablePadding="10dp"
+                            android:focusable="false"
+                            />
+                    <TextView android:id="@+id/err_psw_info"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_alignTop="@id/psw_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        android:textColor="#FFFF0000"
+                        />
+                </RelativeLayout>
+                
+                <LinearLayout android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    >
+                    
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textColor="#FFFF0000"
+                        android:text="@string/ks_generate_tip"
+                        android:textSize="15sp"
+                        />
+                    
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FF000000"
+                        android:text="@string/ks_generate_save_tip"
+                        android:textSize="15sp"
+                        />
+                
+                </LinearLayout>
+                
+            </LinearLayout>
+            
+            <LinearLayout android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/ks_bg_down"
+                android:gravity="center_horizontal"
+                >
+                
+                <Button android:id="@+id/entergame_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/ks_enter_game"
+                    />
+                
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    
+    <include layout="@layout/ks_loading_layout"
+        android:visibility="gone"
+        android:id="@+id/loading"/>
+    
+</FrameLayout>

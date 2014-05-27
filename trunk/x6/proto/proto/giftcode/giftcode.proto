@@ -1,0 +1,7 @@
+message C2s_giftcode_getgift{
+    required string gift_str = 1;
+}
+
+message C2s_giftcode_placeholder{
+    required int32 placeholder = 1;
+}

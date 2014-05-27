@@ -1,0 +1,61 @@
+message S2c_obt_tangyuan_sign {
+    required int32 is_sign = 1;     //1是在奇遇显示汤圆界面
+}
+
+message Tangyuan_msg {
+    required string name = 1;
+    required int32 type = 2;            //1是普通汤圆，2是尚品汤圆
+}
+
+message S2c_obt_tangyuan_info {
+    required int32 mianfen_c = 1;       //面粉数量
+    required int32 xianliao_c = 2;      //馅料数量
+    repeated Tangyuan_msg ty_list = 3;  //制作信息
+}
+
+message C2s_obt_tangyuan_info {
+    required int32 place_holder = 1;
+}
+
+message C2s_obt_tangyuan_make {
+    required int32 place_holder = 1;
+}
+
+message C2s_obt_tangyuan_leave {
+    required int32 place_holder = 1;
+}
+
+message S2c_obt_tangyuan_onemsg {
+    required string name = 1;
+    required int32 type = 2;            //1是普通汤圆，2是尚品汤圆    
+}
+
+message S2c_obt_tangyuan_selfonemsg {
+    required string name = 1;
+    required int32 type = 2;            //1是普通汤圆，2是尚品汤圆   
+    required int32 mianfen_c = 3;       //面粉数量
+    required int32 xianliao_c = 4;      //馅料数量     
+}
+
+message Obt_item_msg {
+    required string name = 1;
+    required int32 count = 2;
+}
+
+message S2c_obt_getitem_msg {
+    repeated Obt_item_msg item_msg = 1;
+}
+
+message Obt_normal_item_msg {
+    required string name = 1;
+    required int32 count = 2;  
+    optional int32 photo = 3;
+}
+
+message S2c_obt_item_msg {
+    repeated Obt_normal_item_msg item_msg = 1;
+}
+
+message S2c_obt_paozhu_msg {
+    repeated Obt_normal_item_msg paozhu_msg = 1;
+}

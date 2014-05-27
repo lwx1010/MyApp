@@ -1,0 +1,51 @@
+message Parupstar_info {
+	required int32 star = 1;//星级
+	required int32 need_value = 2;//所需升星点
+	required int32 str = 3;	//力量加成
+	required int32 con = 4;	//体魄加成
+	required int32 sta = 5;	//耐力加成
+	required int32 dex = 6;	//敏捷加成
+}
+
+message Parupstar_item_list {
+	required int32 id = 1;//物品运行id
+	required int32 item_type = 2;//物品类型 1侠客 2碎片 3道具
+	required int32 icon = 3;//物品图片
+	required string item_name = 4;//物品名称
+	required int32 star_value = 5;//升星点
+	required int32 item_step = 6;//物品阶级
+	optional int32 item_star = 7;//物品星级 只针对侠客
+	required int32 item_num = 8;//物品数量 侠客数量肯定只会发1
+	optional int32 item_grade = 9;	//侠客等级
+}
+
+message C2s_parupstar_info {	//查看某同伴信息
+	required int32 partner_id = 1;	//同伴运行id
+}
+
+message S2c_parupstar_info {
+	required int32 partner_id = 1;	//侠客运行Id
+	required int32 star = 2;	//当前星级
+	required int32 star_value = 3;	//当前升星点
+	required int32 max_value = 4;	//最大升星点
+	required int32 real_star_value = 5;//真实升星点
+	required int32 can_star_num = 6;//能升至多少星
+	required int32 can_star = 7;	//能否升星 1行0不行
+	repeated Parupstar_info star_info = 8;//星阶加成
+	repeated Parupstar_item_list star_item_info = 9;//升星材料
+}
+
+message Parupstar_item {
+	required int32 item_id = 1;		//运行id
+	required int32 item_num = 2;	//数量
+}
+
+message C2s_parupstar_upstar {	//点击升星
+	required int32 partner_id = 1;	//同伴运行id
+	repeated Parupstar_item itemid_list = 2;	//运行id列表
+}
+
+message S2c_parupstar_upstar {
+	required int32 partner_id = 1;		//同伴id
+	required int32 upstar_result = 2;	//升星结果 1成功0失败
+}

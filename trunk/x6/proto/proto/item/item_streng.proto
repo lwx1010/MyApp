@@ -1,0 +1,112 @@
+message C2s_item_streng {		//发送强化协议
+	required int32 id = 1;		//道具ID
+}
+
+message C2s_item_autostreng {	//一键强化
+	required int32 id =  1;
+}
+
+message C2s_item_xl {
+	required int32 id = 1;		//道具ID
+	required int32 sourceid = 2;//使用道具ID
+}
+
+message C2s_item_xlsure {
+	required int32 id = 1;		//道具ID
+	required int32 issave = 2;	//1保留 0不保留
+}
+
+message C2s_item_update {
+	required int32 id = 1;
+}
+
+message S2c_item_strengover {
+	required int32 id = 1;			//强化完毕
+	required int32 type = 2;		//1强化完成 2洗练完成 3洗练保留属性完成 4升阶完成 5强化转移
+	optional string extdata = 3;	//扩展信息a=xx&b=xx&k=xx的方式获取
+}
+
+message C2s_item_martialupgrade {
+	required int32 id = 1;		//道具编号
+}
+
+message C2s_item_martialrealm {
+	required int32 id = 1;		//道具编号
+	required int32 type = 2;	//1秘籍突破 2内力突破
+	optional int32 sourceid = 3;//秘籍突破 材料秘籍
+	repeated int32 extraids = 4;//额外成功率
+}
+
+message S2c_item_martialover {
+	required int32 id = 1;		//强化完毕
+	required int32 type = 2;	//1武学升级完毕 2突破完毕 3合成完毕
+	required int32 issucc = 3;	//成功1 失败0
+	
+	optional int32 martialskillap1 = 4;		//升级前威力
+	optional int32 martialskillap2 = 5;		//升级后威力
+	
+	optional int32 maxgrade1 = 6;		//突破前等级上限
+	optional int32 maxgrade2 = 7;		//突破后等级上限
+}
+
+//道具合成
+message Item_formula_needitem {
+	required int32 itemno = 1;		
+	required int32 num = 2;		//当前拥有数量
+	required int32 neednum = 3;	//所需个数
+}
+
+message Item_formulainfo {
+	required int32 formulano = 1;					//配方编号
+	required int32 genitemno = 2;					//产出道具编号
+	required int32 genicon = 3;						//产出道具图量
+	required string genname = 4;					//产出道具名称
+	required int32 genstep = 5;						//产出道具阶位
+	repeated Item_formula_needitem list_info = 6;	//所需材料列表
+}
+
+message S2c_item_formulainfo {
+	repeated Item_formulainfo formula_list = 1;		//配方信息列表
+}
+
+message C2s_item_formulainfo {
+	required int32 placeholder = 1;					//请求所有配方
+}
+
+message C2s_item_genformula {
+	required int32 formulano = 1;					//配方编号
+}
+
+message S2c_item_formulaover {
+	required int32 type = 1;			//1装备 2武学 3侠客
+	required int32 icon = 2;			//图标
+	required string name = 3;			//名称
+	required int32 rare = 4;			//品阶
+}
+
+//装备分解成矿石
+message C2s_item_fenjie {
+	required int32 equip_id = 1;	//装备运行id
+}
+
+message C2s_item_streng_move {
+    required int32 s_id = 1;            //被转移装备id
+    required int32 d_id = 2;            //目标装备id
+    required int32 type = 3;            //1：强化转移，2：获取转移信息
+}
+
+message Item_streng_move_prop {
+    required string type = 1;           //Ap, Dp, Hp
+    required int32 value = 2;           //添加的数值
+}
+
+message S2c_item_streng_move_info {
+    required int32 s_id = 1;            //被转移装备id
+    required int32 d_id = 2;            //目标装备id
+    required int32 so_grade = 3;        //被转移装备原先等级
+    required int32 sn_grade = 4;        //被转移装备后来等级
+    required int32 do_grade = 5;        //目标装备原先等级
+    required int32 dn_grade = 6;        //目标装备后来等级
+    required Item_streng_move_prop s_prop = 7;
+    required Item_streng_move_prop d_prop = 8;
+}

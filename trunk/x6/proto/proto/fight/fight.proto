@@ -1,0 +1,274 @@
+message Fight_oneside_hp{
+    required int32 allied = 1;			//阵营
+    required int32 now_hp = 2;          //现在的总血量
+    required int32 max_hp = 3;          //最大总血量
+}
+
+message S2c_war_start { 				//战斗开始
+	required int32 war_type = 1;		//战斗类型 0:pve 1:pvp 2:观战
+	optional int32 scene_id = 2;  	 	//底图ID
+	required int32 allied = 3;			//阵营
+	required string own_name = 4;       //自己阵营的名字
+	required string enemy_name = 5;     //敌对阵型名字
+	required int32 photo = 6;           //己方图片
+	repeated Fight_oneside_hp oneside_hp = 7;
+	required int32 fight_id = 8;        //战斗id
+}
+
+message S2c_look_start {				//观战开始
+	optional int32 scene_id = 1;   		//底图ID 
+	required int32 allied = 2;			//阵营
+}
+
+message S2c_begin_bout {				//回合开始
+	required int32 is_begin = 1;  		//开始
+}
+
+message S2c_do_pre_eff {				//回合开始前效果标志
+	required int32 eff_status = 1;		//1开始, 2结束
+}
+
+message S2c_do_end_eff {				//回合结束后效果标志        --add by gs 2012/12/26
+	required int32 eff_status = 1;		//1开始, 2结束
+}
+
+message Fight_martial_info{
+    required string name = 1;       //武学名字
+    required int32 lv = 2;          //武学等级
+}
+
+message S2c_init_fighter {
+	required int32 id = 1;				//ID
+	required int32 type = 2; 			//战士类型 玩家，NPC，伴
+	required int32 shape = 3;			//造型
+	required int32 allied = 4; 			//阵营
+	required int32 pos = 5; 			//站位
+	required string name  = 6;			//名称
+	required int32 weapon = 7;			//武器装备
+	required int32 armor = 8;			//衣服	
+	required int32 sex = 9;				//性别 0无性别，1男，2女
+	required int32 photo = 10;			//头像ID
+	required int32 step = 11;			//NPC阶级 1：普通 2：精英 3：头目 4：首领 5：传奇 如果是玩家或同伴直接忽略
+	required int32 eq_eff_no = 12;		//装备特效
+	required int32 we_eff_no = 13;		//武器强化等级
+	required int32 atk_sound = 14;      //攻击音效，没有则为-1
+	required int32 dead_sound = 15;     //死亡音效，没有则为-1 
+	
+	required int32 grade = 16;          //等级
+	required int32 ap = 17;             //攻击
+	required int32 dp = 18;             //防御
+	required int32 max_hp = 19;         //最高生命
+	required int32 now_hp = 20;         //当前生命
+	required int32 speed = 21;          //速度
+	repeated Fight_martial_info martial_info = 22;    //武学信息
+}
+
+message S2c_init_fighter_hpmp {			//初始化战士气血
+	required int32 warrior_id = 1;		//对象ID
+	required int32 hp = 2;				//生命
+	required int32 hp_min =3;			//生命最低值
+	required int32 hp_max =4;			//生命最高值
+}
+
+message S2c_war_end {					//战斗结束
+	required int32 is_end = 1;  		//开始
+	required int32 bout = 2;
+}
+
+message S2c_start_draw { 			    //服务器数据已全部发送完毕,通知客户端开始战斗绘制，非即时指令，客户端cache执行
+	required int32 start_draw = 1;		//
+}
+
+//战斗中相关协议
+message S2c_actor_begin {				//当前攻击开始，结束
+	required int32 begin_end = 1;		//开始还是结束，1开始，2结束
+}
+
+message Fighter_ids {
+	required int32 warrior_id = 1;	 	//战斗者ID列表
+}
+
+message S2c_set_actor {					//设定当前一轮攻击的主要参与者， 非即时指令需客户端cache执行
+	required int32 attack_id  = 1;		//攻击者ID
+	required int32 main_target_id = 2;	//被主攻者ID
+	repeated Fighter_ids target_ids  = 3; //受害者列表
+	required int32 skill_id =4;			//技能编号
+	required int32 darts_flag = 5; 		//暗器标志（1则有暗器，其它为无）
+}
+
+message S2c_fighter_miss {				//表示战士本回合闪避了物理攻击
+	required int32 warrior_id = 1;		//战士ID
+}
+
+message S2c_set_hpmp {					//战斗中改变气血
+	required int32 warrior_id = 1;		//对象ID
+	required int32 var_id = 2;			//变量类型 1hp, 2hp_min, 3hp_max, 4mp, 5mp_min, 6mp_max
+	required int32 value = 3;			//改变后的值
+	repeated Fight_oneside_hp oneside_hp = 4;
+}
+
+message S2c_show_number {				//单次减血减蓝数据字效果，非即时指令，需要客户端cache执行
+	required int32 warrior_id = 1;		//释放者ID
+	required int32 hurt_type = 2;		//伤害类型1:hp, 2:mp, 3:hpmin, 4:mpmin
+	required int32 hurt_value = 3;		//显示数字 >0 加 <0减
+	required int32 skill_id = 4;		//技能ID
+	required int32 hurt_type2 =5;		//伤害类型 0普通伤害，1拆招伤害，2暴击+破防伤害，3暴击伤害，4破防伤害，5反击伤害
+}
+
+message S2c_fighter_defend {			//表示战士本回合防御
+	required int32 warrior_id = 1;		//战士ID
+}
+
+message S2c_set_protector {				//设定本轮攻击中的保护事件， 非即时指令需客户端cache执行
+	required int32 protect_id = 1;		//保护者
+	required int32 target_id  = 2;		//被保护者
+}
+
+message S2c_add_status {				//给指定的战士增加一个附加状态， 非即时指令需客户端cache执行
+	required int32 warrior_id = 1;		//战士ID
+	required int32 status_id  = 2;		//状态编号
+	required int32 value = 3;		    //状态加减值
+	required int32 now_round = 4;		//当前回合
+	required int32 max_round  = 5;		//最大回合
+	required int32 re_rate	=6;			//挣脱几率(百分比)
+	required int32 allied = 7;          //哪方阵营的
+}
+
+message S2c_del_status {				//移除战士一个附加状态， 非即时指令需客户端cache执行
+	required int32 warrior_id = 1;		//战士ID
+	required int32 status_id = 2;		//状态ID
+}
+message S2c_fighter_relive {			//表示战士复活
+	required int32 warrior_id = 1;		//战士ID
+}
+
+message S2c_fighter_die {
+	required int32 warrior_id = 1;		//死亡ID
+	required int32 rush_out = 2;		//是否击飞
+}
+
+message S2c_fighter_tips {				//战斗tips
+	required string msg = 1;			//内容
+}
+
+message S2c_del_fighter {				//删除一战士，逃跑用到
+	required int32 warrior_id = 1;	
+}
+
+message S2c_escape_status {				//逃跑动作
+	required int32 warrior_id  = 1; 	//逃跑者ID
+	required int32 st = 2;				//1失败，2成功 
+}
+
+message C2s_do_kill {					//PK某人
+	required int32 warrior_id = 1;		//对方ID
+}
+
+
+message S2c_fighter_flag {				//场景显示该角色是否处理战斗中
+	required int32 warrior_id = 1;		//对象ID
+	required int32 flag = 2;			//是否战斗中 1.战斗中 0.非战斗中
+}
+
+message	S2c_fighter_ray {				//灵光一闪特效
+	required int32 warrior_id = 1;
+}
+
+message S2c_fighter_chat {				//战斗说话
+	required int32 warrior_id = 1;		//对象ID
+	required string msg = 2;			//内容
+	required int32 delay_time = 3;      //延时多少秒后发出
+}
+
+message S2c_fight_bout {				//战斗回合数
+	required int32 bout = 1;	
+}
+
+message S2c_fight_evaluate {			//战斗评价
+	required int32 win = 1;				//胜败平：胜1，败2，平3
+	required int32 star = 2;			//星级：1,2,3,4,5星
+	required int32 eva = 3;				//评价：1其疾如风,2其徐如林,3侵略如火,4不动如山,5持强凌弱,6虽败犹荣
+	required int32 allied = 4;			//阵营
+	optional int32 failtip = 5;			//未发，按默认界面显示
+}
+
+
+//播放补充气血动画
+message S2c_hpmp_effect {
+	required int32 warrior_id=1; 		//补气血发起人ID
+	repeated Fighter_ids target_ids=2; 	//补气血目标ID列表
+	required int32 type=3; 			//补充类型
+						//1: 补血
+						//2: 补蓝
+}
+
+
+message C2s_fight_set_pk {				//设置PK模式，1和平模式，2PK模式
+	required  int32 pkmode = 1;		
+}
+
+message S2c_add_fighter {
+	required int32 id = 1;				//ID
+	required int32 type = 2; 			//战士类型 玩家，NPC，伴
+	required int32 shape = 3;			//造型
+	required int32 allied = 4; 			//阵营
+	required int32 pos = 5; 			//站位
+	required string name  = 6;			//名称
+	required int32 weapon = 7;			//武器装备
+	required int32 armor = 8;			//衣服	
+	required int32 sex = 9;				//性别 0无性别，1男，2女
+	required int32 photo = 10;			//头像ID
+	required int32 step = 11;			//NPC阶级 1：普通 2：精英 3：头目 4：首领 5：传奇 如果是玩家或同伴直接忽略
+	required int32 eq_eff_no = 12;		//装备特效
+	required int32 we_eff_no = 13;		//武器强化等级
+	repeated Fight_oneside_hp oneside_hp = 14;
+
+	required int32 atk_sound = 15;      //攻击音效，没有则为-1
+	required int32 dead_sound = 16;     //死亡音效，没有则为-1 	
+	required int32 grade = 17;          //等级
+	required int32 ap = 18;             //攻击
+	required int32 dp = 19;             //防御
+	required int32 max_hp = 20;         //最高生命
+	required int32 now_hp = 21;         //当前生命
+	required int32 speed = 22;          //速度
+	repeated Fight_martial_info martial_info = 23;    //武学信息	
+}
+
+message S2c_fight_action {				//Action特效
+	required int32 warrior_id = 1;				//战士ID
+	required int32 type = 2; 			//特效类型 1挣脱，2抵抗
+}
+
+message S2c_fight_rdyuanbao {		//战斗奖励元宝
+	required int32 yuanbao = 1;
+}
+
+//获得某个战斗buff详细信息
+message C2s_get_fightbuff_info {
+	required int32 buff_id=1;  	 	//BUFF NO
+	required int32 tar_id = 2;		//对象运行Id
+}
+
+//服务器返回战斗buff详细信息
+message S2c_fightbuff_info {
+	required int32 buff_id=1; 		//BUFF NO
+	required int32 tar_id = 2;		//对象运行Id
+	required int32 icon = 3;		//图标
+	required string buff_info=4; 	//信息字符串
+	optional int32 color = 5;		//特效颜色
+	optional int32 effect = 6;		//特效资源
+}
+
+message S2c_fight_end_eff {				//战斗结束后效果标志        --add by gs 2013/7/9
+	required int32 eff_status = 1;		//1开始, 2结束
+}
+
+message S2c_fight_upgrade_info{
+    required int32 old_grade = 1;
+    required int32 now_grade = 2;
+}
+
+message S2c_fight_plotchat{
+    repeated int32 chat_id = 1;
+    required int32 type = 2;        //0是战斗结束，1是其他
+}

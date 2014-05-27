@@ -1,0 +1,62 @@
+message C2s_hongmeng_listinfo {				//已开放灵兽星宿信息       		
+	required int32 placeholder = 1;			
+}
+
+message S2c_hongmeng_listinfo {
+	repeated int32 star = 1;			//开放星宿
+	
+	required int32 xidianyuanbao = 2;	//洗点元宝
+	
+	required int32 speed = 3;			//速度总加成
+	required int32 ap = 4;				//攻击总加成
+	required int32 dp = 5;				//防御总加成
+	required int32 hp = 6;				//生命总加成
+}
+
+message C2s_hongmeng_info {				//开放灵兽星宿     		
+	required int32 atype = 1;			//灵兽分类 1青龙 2朱雀 3白虎 4玄武
+	required int32 star = 2;			//星宿
+}
+
+message S2c_hongmeng_info {
+	required int32 atype = 1;
+	required int32 star = 2;
+	required int32 isopen = 3;			//是否激活
+	required int32 exp = 4;				//经验值
+	required int32 maxexp = 5;			//总经验
+	required string des = 6;				//星宿说明
+	required string addtype = 7;		//加成说明 Speed速度 Ap攻击 Dp防御 HP生命
+	required int32 addvalue = 8;		//加成值
+	required int32 nextvalue = 9;		//下一级加成值
+	required int32 level = 10;			//星宿等级
+	required int32 opengrade = 11;		//开放等级
+}
+
+message C2s_hongmeng_openanimal {
+	required int32 atype = 1;			//激活灵兽
+}
+
+message C2s_hongmeng_openstar {			//开启灵兽星宿
+	required int32 atype = 1;
+	required int32 star = 2;
+}
+
+message C2s_hongmeng_addexp {			//星宿升级
+	required int32 atype = 1;
+	required int32 star = 2;
+	required int32 itemno = 3;
+	required int32 num = 4;
+}
+
+message S2c_hongmeng_addexp {			//星宿升级返回
+	required int32 atype = 1;	
+	required int32 star = 2;	
+}
+
+message C2s_hongmeng_xidian {
+	required int32 placeholder = 1;		//灵兽洗点
+}
+
+message S2c_hongmeng_xidian {
+	required int32 atype = 1;			//灵兽标志位
+}

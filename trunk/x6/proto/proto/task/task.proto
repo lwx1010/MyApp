@@ -1,0 +1,19 @@
+message Task_info {					//获取任务信息
+	required int32 taskid = 1;		//任务编号
+	required string name = 2;		//任务名称
+	required string des = 3;		//任务描述
+	required int32 isfinish = 4;	//任务完成状态 0未完成 1已完成
+	required string reward = 5;		//任务奖励描述
+}
+
+message S2c_task_infolist {
+	repeated Task_info list_info = 1;	//任务列表
+}
+
+message C2s_task_infolist {
+	required int32 placeholder = 1;		//请求任务
+}
+
+message C2s_task_getreward {
+	required int32 taskid = 1;			//领取任务奖励
+}

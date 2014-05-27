@@ -1,0 +1,23 @@
+message Onlinebonus_reward_info {
+    required string name = 1;
+    required int32 count = 2;  
+    required int32 photo = 3;
+    required string type = 4;
+    required int32 step = 5;
+    required int32 item_kind = 6;
+}
+
+message S2c_onlinebonus_info {
+    required int32 reward_time = 1;	//领取奖励时间间隔
+   	required int32 beat_time =2;	//当前心跳次数
+}
+
+message C2s_onlinebonus_reward {
+	required int32 placeholder = 1;	//领取在线奖励
+}
+
+message S2c_onlinebonus_reward {
+	required int32 is_ok = 1;		//是否领取到奖励 1有奖励 0空奖励 不回协议服务端提示背包不足
+	repeated Onlinebonus_reward_info r_infos = 2;//获得的奖励信息
+	required int32 reward_time = 3;		//新的时间间隔
+}

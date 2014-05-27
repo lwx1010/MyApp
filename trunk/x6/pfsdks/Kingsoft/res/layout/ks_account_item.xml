@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="40dp"
+    android:background="@drawable/ks_account_item_bg"
+    >
+    
+    <TextView android:id="@+id/account_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:textColor="#FF000000"
+        />
+    
+    <ImageView android:id="@+id/del_btn"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:padding="8dip"
+        android:src="@drawable/ks_btn_close_selector"
+        android:layout_alignParentRight="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        />
+    
+</RelativeLayout>

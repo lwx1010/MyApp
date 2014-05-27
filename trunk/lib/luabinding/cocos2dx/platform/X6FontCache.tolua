@@ -1,0 +1,10 @@
+// ×ÖÌå»º´æ
+class X6FontCache
+{
+	static void addFontColorMark(const char* mark, unsigned long color);
+	static void addFontSizeMark(const char* mark, int size);
+
+	static void clearOutdates();
+
+	static void clear();
+};

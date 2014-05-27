@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.millionhero.x6.d"
+    android:versionCode="1510"
+    android:versionName="1.510">
+
+    <uses-sdk android:minSdkVersion="8" />
+	<uses-feature android:glEsVersion="0x00020000"/>
+
+    <supports-screens android:largeScreens="true"
+        android:smallScreens="true"
+        android:anyDensity="true"
+        android:normalScreens="true"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+	
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <application android:label="@string/app_name"
+        android:icon="@drawable/icon">
+
+        <activity android:name=".x6"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		<meta-data android:value="522945b656240bd2160b9e36" android:name="UMENG_APPKEY"></meta-data>
+		<meta-data android:value="CHANNEL_ID" android:name="UMENG_CHANNEL"/>
+		<meta-data android:value="" android:name="PLATFORM_NAME"/>
+        <receiver android:name="AlarmReceiver2">
+        </receiver>
+        
+        <service
+            android:name="mm.purchasesdk.iapservice.PurchaseService"
+            android:exported="true" >
+
+            <!-- android:process="mm.iapServices" > -->
+            <intent-filter android:priority="230" >
+                <action android:name="com.aspire.purchaseservice.BIND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="230" >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAFIAP.COMPONENT" >
+                </category>
+            </intent-filter>
+        </service>
+        <!-- android:excludeFromRecents="true" -->
+        <!-- android:launchMode="singleInstance" -->
+        <activity
+            android:name="mm.purchasesdk.iapservice.BillingLayoutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent" >
+            <intent-filter android:priority="230" >
+                <action android:name="com.millionhero.x6.mm.com.mmiap.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- android:process="safiap.framework.safframeworkmanager" begin -->
+        <service
+            android:name="safiap.framework.SafFrameworkManager"
+            android:exported="true"
+            android:process="safiap.framework" >
+            <intent-filter android:priority="600" >
+
+                <!-- ID for services declared in AIDL -->
+                <action android:name="safiap.framework.sdk.ISAFFramework" />
+            </intent-filter>
+            <intent-filter android:priority="600" >
+
+                <!-- ID for services declared in AIDL -->
+                <action android:name="safiap.framework.ACTION_START_DOWNLOAD" />
+            </intent-filter>
+            <intent-filter android:priority="600" >
+
+                <!-- ID for services declared in AIDL -->
+                <action android:name="safiap.framework.ACTION_CHECK_UPDATE" />
+            </intent-filter>
+        </service>
+        <!-- receivers -->
+        <receiver android:name="safiap.framework.CheckUpdateReceiver" >
+            <intent-filter>
+                <action android:name="safiap.framework.ACTION_CANCEL_NOTIFICATION" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="safiap.GET_SHARED_DATA" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="safiap.framework.ACTION_SET_TIMER" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="safiap.framework.ui.UpdateHintActivity"
+            android:configChanges="orientation"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="safiap.framework.ACTION_TO_INSTALL" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="safiap.framework.ACTION_TO_INSTALL_IAP" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="safiap.framework.ACTION_NETWORK_ERROR_IAP" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="safiap.framework.ACTION_NETWORK_ERROR_FRAMEWORK" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="safiap.framework.logreport.monitor.handler.LogreportHandler"
+            android:process=":remote" />
+        <!-- android:process="safiap.framework.safframeworkmanager" end -->
+
+    </application>
+</manifest>

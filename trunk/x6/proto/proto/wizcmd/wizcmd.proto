@@ -1,0 +1,4 @@
+message C2s_wizcmd {				//执行巫师指令
+	required string wizcmd =1; 		//指令串
+}
+

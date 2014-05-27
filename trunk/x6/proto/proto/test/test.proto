@@ -1,0 +1,15 @@
+message S2s_mainserver_test{			//提示信息,客户端点击界面是发送
+	required string info = 1;	 	 	
+}
+
+message Test_info1 {
+	required int32 info1 = 1;
+}
+
+message Test_info2 {
+	repeated Test_info1 info2 = 1;
+}
+
+message S2s_test_info {
+	repeated Test_info2 info3 = 1;
+}

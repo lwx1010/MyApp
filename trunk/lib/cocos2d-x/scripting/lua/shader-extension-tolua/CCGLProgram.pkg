@@ -1,0 +1,89 @@
+enum {
+    kCCVertexAttrib_Position,
+    kCCVertexAttrib_Color,
+    kCCVertexAttrib_TexCoords,
+
+    kCCVertexAttrib_MAX,
+};
+
+enum {
+	kCCUniformPMatrix,
+	kCCUniformMVMatrix,
+	kCCUniformMVPMatrix,
+	kCCUniformTime,
+	kCCUniformSinTime,
+	kCCUniformCosTime,
+	kCCUniformRandom01,
+	kCCUniformSampler,
+    
+	kCCUniform_MAX,
+};
+
+class CCGLProgram : public CCObject
+{
+    static CCGLProgram *create();
+    CCGLProgram();
+    virtual ~CCGLProgram();
+    /** Initializes the CCGLProgram with a vertex and fragment with bytes array */
+    bool initWithVertexShaderByteArray(const char* vShaderByteArray, const char* fShaderByteArray);
+    /** Initializes the CCGLProgram with a vertex and fragment with contents of filenames */
+    bool initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename);
+    /**  It will add a new attribute to the shader */
+    void addAttribute(const char* attributeName, unsigned int index);
+    /** links the glProgram */
+    bool link();
+    /** it will call glUseProgram() */
+    void use();
+/** It will create 4 uniforms:
+    - kCCUniformPMatrix
+    - kCCUniformMVMatrix
+    - kCCUniformMVPMatrix
+    - kCCUniformSampler
+
+ And it will bind "kCCUniformSampler" to 0
+
+ */
+    void updateUniforms();
+    /** calls glUniform1i only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith1i(int location, int i1);
+
+    /** calls glUniform1f only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith1f(int location, float f1);
+
+    /** calls glUniform2f only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith2f(int location, float f1, float f2);
+
+    /** calls glUniform3f only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith3f(int location, float f1, float f2, float f3);
+
+    /** calls glUniform4f only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith4f(int location, float f1, float f2, float f3, float f4);
+
+    /** calls glUniform2fv only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith2fv(int location, float* floats, unsigned int numberOfArrays);
+
+    /** calls glUniform3fv only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith3fv(int location, float* floats, unsigned int numberOfArrays);
+
+    /** calls glUniform4fv only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWith4fv(int location, float* floats, unsigned int numberOfArrays);
+
+    /** calls glUniformMatrix4fv only if the values are different than the previous call for this same shader program. */
+    void setUniformLocationWithMatrix4fv(int location, float* matrixArray, unsigned int numberOfMatrices);
+    
+    /** will update the builtin uniforms if they are different than the previous call for this same shader program. */
+    void setUniformsForBuiltins();
+
+    /** returns the vertexShader error log */
+    const char* vertexShaderLog();
+    /** returns the fragmentShader error log */
+    const char* fragmentShaderLog();
+    /** returns the program error log */
+    const char* programLog();
+    
+    // reload all shaders, this function is designed for android
+    // when opengl context lost, so don't call it.
+    void reset();
+    
+    const unsigned int getProgram() { return m_uProgram; }
+};

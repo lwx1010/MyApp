@@ -1,0 +1,59 @@
+message C2s_jianwen_base_info{          //见闻主界面
+    required int32 jianwen_no = 1;      //见闻图鉴编号，1：侠客，2：武功，3：神兵
+}
+
+message Jianwen_one_info{
+    required int32 item_no = 1;         //物品编号
+    required string item_name = 2;      //物品名字
+    required int32 item_photo = 3;      //物品图片
+    required int32 rare = 4;            //物品品质
+    optional int32 partner_type = 5;	//同伴特征1进攻型 2防守型 3均衡型 4内力狂人
+}
+
+message S2c_jianwen_base_info{
+    required int32 jianwen_no = 1;      //见闻图鉴编号，1：侠客，2：武功，3：神兵
+    repeated Jianwen_one_info infos = 2;
+    required int32 max_count = 3;       //总数量
+}
+
+message Jianwen_prop_info{
+    required string type = 1;        
+    //Ap：攻击，Dp：防御，Hp：生命，ApRate：万分比攻击，DpRate：万分比防御，HpRate：万分比生命
+    required int32 value = 2;
+}
+
+message Jianwen_sanwei_info{
+    required string type = 1;       //Str：力量，Con：体魄，Dex：敏捷，Sta：耐力
+    required int32 value = 2;
+}
+
+//一个侠客的信息
+message S2c_jianwen_one_xk_info{
+    optional string martial_name = 1;	//天赋技能
+	required int32 partner_type = 2;	//同伴特征1进攻型 2防守型 3均衡型 4内力狂人
+	repeated Jianwen_sanwei_info prop_info = 3;       //侠客3围属性
+	optional string info1 = 4;          //信息1
+	optional int32 info2 = 5;           //信息2
+}
+
+//一个武学的信息
+message S2c_jianwen_one_wg_info{
+    required int32 type = 1;            //1:拳脚,2:枪棒,3:刀剑
+    required int32 ap = 2;              //武学威力
+    optional string info1 = 3;          //信息1  
+}
+
+//一个神兵的信息
+message S2c_jianwen_one_sb_info{
+    required int32 type = 1;            //部位类型：1:武器,2:衣服,3:首饰
+    required int32 is_sb = 2;           //是否是神兵：0不是，1是
+    repeated Jianwen_prop_info prop_info = 3;           //属性
+    optional string info1 = 4;          //信息1  
+}
+
+//获取一个侠客，武学，神兵的信息
+message C2c_jianwen_get_one_info{
+    required int32 item_no = 1;         //物品编号
+    required int32 jianwen_no = 2;      //见闻图鉴编号，1：侠客，2：武功，3：神兵
+}
+

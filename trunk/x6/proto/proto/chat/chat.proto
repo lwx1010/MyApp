@@ -1,0 +1,154 @@
+message S2c_question_ask {
+	required int32 question_id = 1;   	// 问题ID，用于标识每个对话过程，对应的回答必须指定相同的ID
+	required string question = 2;   	// 问题
+	required int32 question_type = 3; 	// 问题类型，用于指定客户端提示类型，当前如下类型：
+					  // 1-组队 
+					  // 2-好友
+	required string title = 4; 			// 消息框标题
+	required string yes_label = 5; 		// 同意按钮的文案
+	required string no_label = 6; 		// 拒绝按钮的文案
+	required int32 timeout = 7; 		// 消息框超时时间，如果玩家超时没有响应，则返回取消。
+}
+
+message C2s_question_answer {
+	required int32 question_id = 1; // 对应要回答的问题ID 
+	required int32 answer = 2; // 玩家答案	
+				   // 1: 同意
+				   // 2: 拒绝
+				   // 3: 取消.如果玩家超时没有响应或直接关掉消息框，则客户端应主动发送结果为"取消"的结果
+	optional int32 type = 3;		//1副本战斗
+}
+
+
+//////////////////////////////////////////系统发言
+
+//type:
+//SYS_ROLL 						= 1			--系统广播			（上屏跑马灯）
+//SYS_PROMT_BOX 			= 2			--提示信息			（中屏渐变,常用(UserObj:Notify(msg))）
+//SYS_DIALOG 					= 3			--消息框,需要确认消失
+//SYS_SYSTEM					=	4			--系统信息
+//SYS_NOTICE 					= 5			--公告信息
+//系统提示信息
+message S2c_chat_system {			
+	required int32 type = 1;		//系统提示信息类型
+	required string msg = 2;		//提示内容
+	optional int32 isshow = 3;		//是否立即显示 不发、1为立即显示 0为不
+}
+
+
+//////////////////////////////////////////玩家世界发言
+
+//channel:
+//WORLD_CHANNEL 		= 	1		--世界
+//公共聊天
+message C2s_chat_public {
+	required int32 channel = 1;		//频道
+	required string chat_msg = 2;	//说话内容
+	required int32 send_type = 3;//发送类型 1大喇叭 2小喇叭 0普通发话
+}
+//公共聊天
+message S2c_chat_public {
+	required int32 channel = 1;		//频道
+	required int32 send_type = 2;		//发送类型 1大喇叭 2小喇叭 0普通发话
+	required int32 chat_id = 3;		//说话者ID
+	required string chat_name = 4;	//说话者名字
+	required string chat_msg = 5;	//说话内容
+	required int32 sex = 6;			//性别1男2女
+	required string uid = 7;	//说话者uid
+}
+
+
+//////////////////////////////////////////玩家私聊
+
+//私聊,对某人说话
+message C2s_chat_private {			
+	required int32 dst_cid = 1;		//与话者ID
+	required string chat_msg = 2;	//说话内容
+}
+//私聊频道
+message S2c_chat_private {			
+	required int32 src_cid = 1;		//说话者ID
+	required string src_name = 2;	//说话者名字
+	required int32 dst_cid = 3;		//与话者ID
+	required string dst_name = 4;	//与话者名字
+	required string chat_msg = 5;	//说话内容
+}
+
+
+//////////////////////////////////////////信息推送
+
+//弹出充值框，确认弹出充值界面
+message S2c_chat_chongzhi {
+	required int32 placeholder = 1;		//提示充值
+}
+
+//pvp推送信息
+message S2c_chat_pvpinfo {
+	required string info = 1;			//推送信息
+}
+
+//系统推送信息
+message S2c_chat_sysinfo {
+	required string info = 1;
+	required int32 dura = 2;			//持续时间
+	required int32 times = 3;			//次数
+}
+
+message S2c_chat_appinfo {				
+	required string info = 1; 		//内容
+	optional string extdata = 2; 	//扩展信息a=xx&b=xx&k=xx的方式获取
+}
+
+
+//////////////////////////////////////////切磋
+
+message C2s_chat_pk {
+	required int32 user_id = 1;//向谁发起切磋 运行id
+}
+
+message S2c_chat_pk_tome {
+	required int32 is_ok = 1;//1邀请成功 0邀请失败
+}
+
+message S2c_chat_pk {
+	required string user_name = 1;//玩家向你发起切磋,等待你的回应
+	required int32 wait_time = 2;//等待时间
+}
+
+message C2s_chat_pk_result {
+	required int32 pk_result = 1;//1是接受 0是拒绝
+}
+
+message S2c_chat_pk_reject {//对方拒绝切磋
+	required int32 user_id = 1;
+	required int32 is_ok = 2;//1接受 0拒绝
+}
+
+message S2c_chat_pk_result {
+	required int32 is_win = 1;//1为站胜 0为战败
+}
+
+
+//////////////////////////////////////////在线玩家
+
+//打开关闭聊天界面
+message C2s_chat_openorclose {
+	required int32 open_or_close = 1;//1为打开 0关闭
+}
+
+//获取在线玩家
+message C2s_chat_onlines {
+	required int32 index = 1;
+}
+
+message Chatonline_list {
+	required string name = 1;	//名称
+	required int32 grade = 2;	//等级
+	required int32 user_id = 3;//运行Id
+}
+
+//发送在线玩家
+message S2c_chat_onlines {
+	repeated Chatonline_list online_list = 1;
+}
+

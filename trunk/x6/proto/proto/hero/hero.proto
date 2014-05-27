@@ -1,0 +1,88 @@
+message Hero_info_int {					//玩家信息整型
+	required string key =1; 	  		//key
+	required int32 value = 2; 			//整型值
+}
+
+message S2c_hero_info_int {				//发送玩家整型信息
+	repeated Hero_info_int info = 1;    //列表信息
+}
+
+message Hero_info_string {				//玩家信息字符串
+	required string key = 1;			//key
+	required string value = 2;			//字符窜
+}
+
+message S2c_hero_info_string {			//发送玩家字符串信息
+	repeated Hero_info_string info = 1;	//列表信息
+}
+
+message S2c_hero_enter_info {
+	required int32 id = 1;				//玩家运行id
+	required string uid = 2;			//玩家uid
+	required string name = 3;			//玩家姓名
+	required int32 sex = 4;				//玩家性别
+	required int32 grade = 5;			//玩家等级
+}
+
+message C2s_hero_maininfo {
+	required int32 place_holder = 1;
+}
+
+message S2c_hero_maininfo {
+	required int32 partner_max = 1;
+	required int32 partner_num = 2;
+	required int32 equip_max = 3;
+	required int32 equip_num = 4;
+	required int32 martial_max = 5;
+	required int32 martial_num = 6;
+	required int32 item_max = 7;
+	required int32 item_num = 8;
+	
+	required int32 physical_time = 9;
+	required int32 vigor_time = 10;
+}
+
+message C2s_hero_baginfo {
+	required int32 place_holder = 1;
+	required string uiid = 2;
+}
+
+message S2c_hero_baginfo {
+	required int32 partner_max = 1;
+	required int32 partner_num = 2;
+	required int32 equip_max = 3;
+	required int32 equip_num = 4;
+	required int32 martial_max = 5;
+	required int32 martial_num = 6;
+	required int32 item_max = 7;
+	required int32 item_num = 8;
+	required int32 partnerchip_max = 9;
+	required int32 partnerchip_num = 10;
+	required int32 equipchip_max = 11;
+	required int32 equipchip_num = 12;
+	required int32 martialchip_max = 13;
+	required int32 martialchip_num = 14;
+	required string uiid = 15;
+}
+
+message S2c_hero_bagnum {
+	required int32 frameno = 1;		//0侠客 1宝物栏 2装备栏 3武学栏 4侠客碎片 5装备碎片 6武学碎片 7天赋武学
+	required int32 num = 2;			//当前数量
+	required int32 maxnum = 3;		//最大数量
+}
+
+message S2c_hero_upgradeinfo {
+	required int32 grade1 = 1;		//升级前等级
+	required int32 grade2 = 2;		//升级后等级
+	required int32 exp = 3;			//当前经验
+	required int32 max_exp = 4;		//最大经验
+	required int32 fight_num = 5;	//最大出战数
+    optional int32 photo = 6;       //送物品的信息
+    optional int32 step = 7;        //送物品的信息
+    optional string name = 8;       //送物品的信息	
+    optional int32 num = 9;       //送物品的信息	
+}
+
+message S2c_hero_gradeinfo {
+	required string info = 1;		//等级信息
+}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout 
+        android:id="@+id/login_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ks_bg_title"
+            android:padding="10dp"
+            android:orientation="horizontal" >
+            
+            <Button android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ks_btn_back"/>
+            
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/ks_sign_in_title"
+                android:textSize="20sp"
+                android:textColor="#FFEDEFEF"
+                />
+            
+            <Button android:id="@+id/close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:visibility="gone"
+                android:background="@drawable/ks_btn_close_selector"
+                />
+        </RelativeLayout>
+        
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ks_bg_up"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            >
+            
+            <TextView android:id="@+id/err_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFF0000"
+                android:text=""
+                android:layout_alignParentTop="true"
+                />
+            
+            <EditText
+                android:id="@+id/usr_account"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignRight="@+id/err_info"
+                android:layout_below="@id/err_info"
+                android:drawableLeft="@drawable/ks_usr_selector"
+                android:drawablePadding="10dp"
+                android:textColor="#000000"
+                android:background="#FFFFFF"
+                android:paddingLeft="10dip"
+                android:hint="@string/ks_signin_usr_hint"
+                android:singleLine="true" />
+            
+            <EditText
+                android:id="@+id/usr_psw"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:layout_alignRight="@+id/usr_account"
+                android:layout_below="@id/usr_account"
+                android:drawableLeft="@drawable/ks_psw_selector"
+                android:drawablePadding="10dp"
+                android:textColor="#000000"
+                android:background="#FFFFFF"
+                android:paddingLeft="10dip"
+                android:layout_marginTop="2dp"
+                android:hint="@string/ks_signin_psw_hint"
+                android:singleLine="true" />
+            
+            <CheckBox android:id="@+id/clause_checkbox"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/usr_psw"
+                android:singleLine="true"
+                android:textSize="12sp"
+                android:text="@string/ks_clause_cb"
+                android:textColor="#AA000000"
+                />
+            <TextView android:id="@+id/clause_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/clause_checkbox"
+                android:layout_alignBottom="@id/clause_checkbox"
+                android:layout_toRightOf="@id/clause_checkbox"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:text="@string/ks_clause_tv"
+                android:textSize="12sp"
+                android:textColor="#235A84"
+                />
+        </RelativeLayout>
+        
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="15dp"
+                android:background="@drawable/ks_bg_down"
+                >
+
+					<Button
+					    android:id="@+id/signin"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_alignParentTop="true"
+					    android:layout_centerHorizontal="true"
+					    android:background="@drawable/ks_btn_register_selector" />
+	
+        </RelativeLayout>
+    
+    </LinearLayout>
+    			
+    <include layout="@layout/ks_loading_layout"
+        android:visibility="gone"
+        android:id="@+id/loading"/>
+</FrameLayout>
